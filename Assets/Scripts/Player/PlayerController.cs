@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0)
         {
             characterScale.x = -1;
+
         }
         if (Input.GetAxis("Horizontal") > 0)
         {
