@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a389b208679e04fb9e6fa403235b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  _moveSpeed: 100
   _idle: {fileID: -4087565270596480913, guid: ccb9e3e621cab0c45a5943beb235d352, type: 3}
   _click: {fileID: -7170055948711580997, guid: ccb9e3e621cab0c45a5943beb235d352, type: 3}
-  _clickTime: 0.6
+  _clickTime: 0.2
+  _checkCircleRadius: 0.62
 --- !u!212 &976890877092883511
 SpriteRenderer:
   m_ObjectHideFlags: 0
