@@ -6,11 +6,11 @@ public class CameraTrigger : MonoBehaviour
 {
     [SerializeField] private Transform _moveToPos;
 
-    private Camera _camera;
+    private CameraController _camera;
 
     private void Start()
     {
-        _camera = FindObjectOfType<Camera>();
+        _camera = FindObjectOfType<CameraController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
