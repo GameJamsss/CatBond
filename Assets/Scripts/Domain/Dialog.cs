@@ -50,7 +50,7 @@ namespace Assets.Scripts.Domain
                 _dialogLines.Dequeue() :
                 _dialogLines.Count == 1 ?
                     new EndingLine(_dialogLines.Dequeue().GetLine()) :
-                    new EndingLine("Developers ate shit and made empty dialog");
+                    new EndingLine("Developers have ate shit and made an empty dialog");
         }
     }
 }
