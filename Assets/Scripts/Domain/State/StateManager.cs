@@ -39,17 +39,35 @@ namespace Assets.Scripts.Domain.State
                     });
         }
 
+        public bool TransitState(int itemId)
+        {
+            return getState(itemId)
+                .Map(state => state.Transition(itemId))
+                .Bind(mbId => mbId.Map(getState).Match(some => some, () => Result.Failure<State>("no such state")))
+                .Tap(state =>
+                {
+                    _currentStateId = state.GetId();
+                    state.ApplySprite();
+                })
+                .TapError(err => Debug.Log(err))
+                .IsSuccess;
+        }
+
         public Result<List<IContextMenuButton>> GetStateContextMenu()
         {
-            _states.ForEach(s => Debug.Log("state ids" + s.GetId()));
-            return Result
-                .Try(() => _states.Find(state => state.GetId() == _currentStateId))
-                .Ensure(state => state != null, "no such state found")
+            return getState(_currentStateId)
                 .Map(state =>
                 {
                     Debug.Log(state);
                     return state.ContextMenu;
                 });
+        }
+
+        private Result<State> getState(int stateId)
+        {
+            return Result
+                .Try(() => _states.Find(state => state.GetId() == stateId))
+                .Ensure(state => state != null, "no such state found");
         }
     }
 }

@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Domain.Objects;
-
 namespace Assets.Scripts.UI
 {
     public class CursorController : MonoBehaviour

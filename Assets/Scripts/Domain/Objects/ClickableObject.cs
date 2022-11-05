@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Domain.Objects
 {
-    public class ClickableObject : MonoBehaviour, IClickable
+    public class ClickableObject : MonoBehaviour, IClickable, IApplicable
     {
         [SerializeField] private float _buttonBottomOffset;
         [SerializeField] private float _buttonSideOffset;
@@ -22,18 +22,10 @@ namespace Assets.Scripts.Domain.Objects
                     err =>
                     {
                         Debug.Log(
-                            "You forgot to add StateManager to object, I WON'T TELL YOU WHICH ONE, FIND OUT YOURSELF: " +
+                            "You forgot to add StateManager to object, I WON'T TELL YOU WHICH ONE BECAUSE I DON'T KNOW, FIND OUT YOURSELF: " +
                             err);
                         return Maybe<StateManager>.None;
                     });
-        }
-
-        void Update()
-        {
-            if (Input.GetKeyDown("space"))
-            {
-                Click();
-            }
         }
 
         public void DestructContextMenu()
@@ -52,7 +44,7 @@ namespace Assets.Scripts.Domain.Objects
                         .GetStateContextMenu()
                         .Match(lcmb =>
                                 {
-                                    List<float> pozs = lcmb.Select((_, i) => (i - 1) * _buttonSideOffset - lcmb.Count * _buttonSideOffset).ToList();
+                                    List<float> pozs = lcmb.Select((_, i) => i * _buttonSideOffset - lcmb.Count * _buttonSideOffset).ToList();
                                     foreach (var (contextMenuButton, i1) in lcmb.Select((cmb, i) => (cmb, i)))
                                     {
                                         contextMenuButton.SpawnButton(gameObject, pozs[i1], -1 * _buttonBottomOffset);
@@ -68,5 +60,16 @@ namespace Assets.Scripts.Domain.Objects
             );
         }
 
+        public bool Apply(int objId)
+        {
+            return _stateManager.Match(
+                sm => sm.TransitState(objId),
+                () =>
+                {
+                    Debug.Log("State manager has not found. Add one.");
+                    return false;
+                }
+            );
+        }
     }
 }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Items;
+using Assets.Scripts.Items;
 
 namespace Assets.Scripts.Managers
 {
