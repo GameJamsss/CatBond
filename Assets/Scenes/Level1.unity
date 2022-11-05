@@ -359,6 +359,8 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 21300000, guid: 5d758fa13c29bbb449b7a27ef0ba748a, type: 3}
   _spriteRenderer: {fileID: 16301774}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!114 &16301779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +603,8 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 21300000, guid: b4c59257bfa6ad34da9f410df6af7b12, type: 3}
   _spriteRenderer: {fileID: 158141497}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!114 &158141503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,6 +1327,8 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 21300000, guid: 5977d7f8fb6df3646bde8b24b28f5148, type: 3}
   _spriteRenderer: {fileID: 418220288}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!114 &418220293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1947,6 +1953,8 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 21300000, guid: 37059c2b1236c3c47854e13fa8e1df1d, type: 3}
   _spriteRenderer: {fileID: 712235040}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!114 &712235044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2799,6 +2807,8 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 0}
   _spriteRenderer: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!114 &1362645989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3022,6 +3032,8 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 21300000, guid: 07f1241b2b99958408776f1211db9f01, type: 3}
   _spriteRenderer: {fileID: 1431444708}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!114 &1431444713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3175,6 +3187,8 @@ MonoBehaviour:
   - 0:1
   _sprite: {fileID: 0}
   _spriteRenderer: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!114 &1445665327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3245,6 +3259,8 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 0}
   _spriteRenderer: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!1 &1454164934
 GameObject:
   m_ObjectHideFlags: 0
@@ -3368,7 +3384,7 @@ Canvas:
   m_GameObject: {fileID: 1480756495}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 605587780}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -3378,7 +3394,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 400
   m_TargetDisplay: 0
 --- !u!224 &1480756500
 RectTransform:
@@ -3954,6 +3970,8 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 0}
   _spriteRenderer: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!114 &1598886714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4395,6 +4413,8 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 0}
   _spriteRenderer: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!114 &1867306663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5612,6 +5632,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1480756500}
     m_Modifications:
+    - target: {fileID: 287793587, guid: ce4dd9b8d3fb37747a3bd33655050656, type: 3}
+      propertyPath: _sleep
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 8459588362717460961, guid: ce4dd9b8d3fb37747a3bd33655050656, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
