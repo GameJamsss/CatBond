@@ -558,9 +558,10 @@ MonoBehaviour:
   - {fileID: 1614690928964527472}
   - {fileID: 1614690929181015390}
   _capsuleCollider2D: {fileID: 1294634087370960040}
-  _doorCollider: {fileID: 807438546}
   _fullSprite: {fileID: 1126561247}
   _emptySprite: {fileID: 1029591978}
+  _isTankFull: 1
+  _canMove: 0
 --- !u!61 &243037970
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -611,7 +612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614690929181015361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.34, z: 0}
+  m_LocalPosition: {x: 0, y: 11.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -765,8 +766,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.096423924, y: -1.5765243}
-  m_Size: {x: 2.7099812, y: 0.13031818}
+  m_Offset: {x: 0.029524874, y: -1.4374993}
+  m_Size: {x: 2.8437803, y: 0.40836793}
   m_Direction: 1
 --- !u!1 &6435980365841431377
 GameObject:

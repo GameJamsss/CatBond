@@ -10,6 +10,8 @@ namespace Assets.Scripts
         [SerializeField] private Transform[] points;
         [SerializeField] private CapsuleCollider2D _capsuleCollider2D;
 
+        [SerializeField] private float _waitTime = 2f;
+
         [SerializeField] private GameObject _fullSprite;
         [SerializeField] private GameObject _emptySprite;
 
@@ -47,7 +49,7 @@ namespace Assets.Scripts
         IEnumerator WaitTime()
         {
             _canMove = false;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(_waitTime);
             _canMove = true;
         }
 
