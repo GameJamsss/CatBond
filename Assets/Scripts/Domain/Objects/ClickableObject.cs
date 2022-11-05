@@ -28,14 +28,6 @@ namespace Assets.Scripts.Domain.Objects
                     });
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown("space"))
-            {
-                Click();
-            }
-        }
-
         public void DestructContextMenu()
         {
             foreach (Transform child in transform)
@@ -52,7 +44,7 @@ namespace Assets.Scripts.Domain.Objects
                         .GetStateContextMenu()
                         .Match(lcmb =>
                                 {
-                                    List<float> pozs = lcmb.Select((_, i) => (i - 1) * _buttonSideOffset - lcmb.Count * _buttonSideOffset).ToList();
+                                    List<float> pozs = lcmb.Select((_, i) => i * _buttonSideOffset - lcmb.Count * _buttonSideOffset).ToList();
                                     foreach (var (contextMenuButton, i1) in lcmb.Select((cmb, i) => (cmb, i)))
                                     {
                                         contextMenuButton.SpawnButton(gameObject, pozs[i1], -1 * _buttonBottomOffset);
