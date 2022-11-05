@@ -1,6 +1,6 @@
 namespace Assets.Scripts.Domain.Items
 {
-    public interface IInteractable
+    public interface IContainAnAItem
     {
         public void Use();
     }

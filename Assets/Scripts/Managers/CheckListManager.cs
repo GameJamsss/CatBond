@@ -10,5 +10,6 @@ namespace Assets.Scripts.Managers
         [SerializeField] private Toggle[] _toggles;
 
 
+
     }
 }
