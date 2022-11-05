@@ -26,12 +26,20 @@ public class GameMenu : MonoBehaviour
 
     private void Pause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_isOnPause)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SetGameOnPause();
+        }
+    }
+
+    public void SetGameOnPause()
+    {
+        if (!_isOnPause)
         {
             _isOnPause = true;
             _pauseMenu.SetActive(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && _isOnPause)
+        else
         {
             Continue();
         }
