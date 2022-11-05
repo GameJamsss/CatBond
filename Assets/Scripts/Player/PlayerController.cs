@@ -10,7 +10,7 @@ namespace Assets.Scripts.Player
         [SerializeField] private float _speed = 5.0f;
 
         [Header("Sounds")]
-        [SerializeField] private AudioClip _walkClip;
+        [SerializeField] private AudioClip[] _walkClips;
 
         private CharState State
         {
@@ -63,7 +63,7 @@ namespace Assets.Scripts.Player
         //called from animation trigger
         private void PlayWalkSound()
         {
-            _audioSource.PlayOneShot(_walkClip);
+            _audioSource.PlayOneShot(_walkClips[Random.Range(0, _walkClips.Length)]);
         }
     }
 

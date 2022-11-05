@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Domain.Objects;
+using Assets.Scripts.Managers;
 
 namespace Assets.Scripts.UI
 {
@@ -17,12 +18,15 @@ namespace Assets.Scripts.UI
 
         [SerializeField] private float _checkCircleRadius = 1f;
 
+        private ItemInventoryManager _inventoryManager;
+
         private Vector3 mousePosition;
 
         private void Start()
         {
             Cursor.visible = false;
             _spriteRenderer.sprite = _idle;
+            _inventoryManager = FindObjectOfType<ItemInventoryManager>();
         }
 
         void Update()
@@ -88,6 +92,9 @@ namespace Assets.Scripts.UI
                     if (collider.GetComponent<BoxController>() != null)
                         collider.GetComponent<BoxController>().MoveBox();
 
+                    if (collider.GetComponent<BellRign>() != null)
+                        collider.GetComponent<BellRign>().PlaySound();
+
                     if (collider.GetComponent<MouseToy>() != null)
                         collider.GetComponent<MouseToy>().Run();
 
@@ -95,7 +102,10 @@ namespace Assets.Scripts.UI
                         collider.GetComponent<CollecteableItem>().Take();
 
                     if (collider.GetComponent<ClickableObject>() != null)
+                    {
                         collider.GetComponent<ClickableObject>().Click();
+                        _inventoryManager.Zac(collider.GetComponent<ClickableObject>());
+                    }                      
                 }
             }
         }
