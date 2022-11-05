@@ -18,6 +18,8 @@ namespace Assets.Scripts.Domain.State
         [SerializeField] private string[] _transitions;
         [SerializeField] private Sprite _sprite;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _onTransitionClip;
         private List<Tuple<int, int>> _parsedTransactions;
         public List<IContextMenuButton> ContextMenu = new();
 
@@ -49,6 +51,23 @@ namespace Assets.Scripts.Domain.State
         public void ApplySprite()
         {
             if (_sprite != null) _spriteRenderer.sprite = _sprite;
+        }
+
+        public void ApplySound()
+        {
+            if (_audioSource != null && _onTransitionClip != null)
+            {
+                _audioSource.Stop();
+                _audioSource.loop = false;
+                _audioSource.clip = _onTransitionClip;
+                _audioSource.Play();
+            }
+        }
+
+        public void ApplyState()
+        {
+            ApplySprite();
+            ApplySound();
         }
 
         public int GetId()

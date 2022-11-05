@@ -30,7 +30,7 @@ namespace Assets.Scripts.Domain.State
                 .Ensure(state => state != null, "no such state")
                 .Match(state =>
                     {
-                        state.ApplySprite();
+                        state.ApplyState();
                         _currentStateId = state.GetId();
                     },
                     err =>
@@ -44,11 +44,7 @@ namespace Assets.Scripts.Domain.State
             return getState(itemId)
                 .Map(state => state.Transition(itemId))
                 .Bind(mbId => mbId.Map(getState).Match(some => some, () => Result.Failure<State>("no such state")))
-                .Tap(state =>
-                {
-                    _currentStateId = state.GetId();
-                    state.ApplySprite();
-                })
+                .Tap(state => ApplyState(state.GetId()))
                 .TapError(err => Debug.Log(err))
                 .IsSuccess;
         }
