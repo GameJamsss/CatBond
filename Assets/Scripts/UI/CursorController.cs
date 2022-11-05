@@ -69,6 +69,9 @@ namespace Assets.Scripts.UI
 
                     if (collider.GetComponent<BoxController>() != null)
                         collider.GetComponent<BoxController>().MoveBox();
+
+                    if (collider.GetComponent<MouseToy>() != null)
+                        collider.GetComponent<MouseToy>().Run();
                 }
             }
         }
