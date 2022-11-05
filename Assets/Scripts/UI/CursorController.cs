@@ -68,6 +68,9 @@ namespace Assets.Scripts.UI
 
                     if (collider.GetComponent<MouseToy>() != null)
                         collider.GetComponent<MouseToy>().Run();
+
+                    if (collider.GetComponent<CupItem>() != null)
+                        collider.GetComponent<CupItem>().Take();
                 }
             }
         }
