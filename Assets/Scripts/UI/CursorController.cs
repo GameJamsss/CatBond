@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Domain.Objects;
+
 namespace Assets.Scripts.UI
 {
     public class CursorController : MonoBehaviour
@@ -8,6 +10,7 @@ namespace Assets.Scripts.UI
         [SerializeField] private float _moveSpeed = 100f;
         [SerializeField] private Sprite _idle;
         [SerializeField] private Sprite _click;
+        [SerializeField] private Sprite _hovered;
         [SerializeField] private float _clickTime = 0.6f;
 
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -28,6 +31,16 @@ namespace Assets.Scripts.UI
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             transform.position = Vector2.Lerp(transform.position, mousePosition, _moveSpeed);
 
+            if (CheckHovered())
+            {
+                _spriteRenderer.sprite = _hovered;
+            }
+            else
+            {
+                _spriteRenderer.sprite = _idle;
+            }
+
+
             if (Input.GetMouseButton(0))
             {
                 CheckItems();
@@ -40,6 +53,17 @@ namespace Assets.Scripts.UI
             _spriteRenderer.sprite = _click;
             yield return new WaitForSeconds(_clickTime);
             _spriteRenderer.sprite = _idle;
+        }
+
+        private bool CheckHovered()
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _checkCircleRadius);
+
+            foreach (var collider in colliders)
+                if (collider.CompareTag("Item"))
+                    return true;
+
+            return false;
         }
 
         private void CheckItems()

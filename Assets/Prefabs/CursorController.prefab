@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 100
-  _idle: {fileID: 21300000, guid: 52b3c9d4648ce2a41934219bed6f303c, type: 3}
+  _idle: {fileID: 21300000, guid: 7793536f29d58854b8d866dd7383ed91, type: 3}
   _click: {fileID: 21300000, guid: 565f6ee7150f415499e1313eb7aee4ab, type: 3}
+  _hovered: {fileID: 21300000, guid: 52b3c9d4648ce2a41934219bed6f303c, type: 3}
   _clickTime: 0.2
   _spriteRenderer: {fileID: 5959743806514049660}
   _checkCircleRadius: 0.4

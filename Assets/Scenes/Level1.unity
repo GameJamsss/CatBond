@@ -222,7 +222,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -272,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _contextMenuIds: 00000000
+  _transitions: []
   _sprite: {fileID: 21300000, guid: 5d758fa13c29bbb449b7a27ef0ba748a, type: 3}
   _spriteRenderer: {fileID: 16301774}
 --- !u!114 &16301779
@@ -538,6 +539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _contextMenuIds: 00000000
+  _transitions: []
   _sprite: {fileID: 21300000, guid: b4c59257bfa6ad34da9f410df6af7b12, type: 3}
   _spriteRenderer: {fileID: 158141497}
 --- !u!114 &158141503
@@ -781,6 +783,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 243037970, guid: a8bf3cfc4c7c9cd4f8888de49a320f53, type: 3}
+      propertyPath: m_Size.x
+      value: 3.1730187
+      objectReference: {fileID: 0}
+    - target: {fileID: 243037970, guid: a8bf3cfc4c7c9cd4f8888de49a320f53, type: 3}
+      propertyPath: m_Size.y
+      value: 3.4362855
+      objectReference: {fileID: 0}
+    - target: {fileID: 243037970, guid: a8bf3cfc4c7c9cd4f8888de49a320f53, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.16909826
+      objectReference: {fileID: 0}
+    - target: {fileID: 243037970, guid: a8bf3cfc4c7c9cd4f8888de49a320f53, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.08161682
+      objectReference: {fileID: 0}
     - target: {fileID: 1614690927997305576, guid: a8bf3cfc4c7c9cd4f8888de49a320f53, type: 3}
       propertyPath: m_Name
       value: Lift
@@ -1307,6 +1325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _contextMenuIds: 00000000
+  _transitions: []
   _sprite: {fileID: 21300000, guid: 5977d7f8fb6df3646bde8b24b28f5148, type: 3}
   _spriteRenderer: {fileID: 418220288}
 --- !u!114 &418220293
@@ -1534,6 +1553,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _smooth: 3
+--- !u!1 &651720020 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1614690929053031042, guid: a8bf3cfc4c7c9cd4f8888de49a320f53, type: 3}
+  m_PrefabInstance: {fileID: 252736529}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &651720025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651720020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2b09e353025d145880387ee86e3d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
+  _info: []
+  _staticButtonSprite: {fileID: 0}
+  _hoveredButtonSprite: {fileID: 0}
+  _clickedButtonSprite: {fileID: 0}
+--- !u!114 &651720026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651720020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630136b92834ed0408793b0e30c72a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
+  _contextMenuIds: 
+  _transitions: []
+  _sprite: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+--- !u!114 &651720027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651720020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f699b8d4e68cd340ac145d30ec2c74f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentStateId: 0
+--- !u!114 &651720028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651720020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonBottomOffset: 0.3
+  _buttonSideOffset: 0.3
 --- !u!1 &706307480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,6 +1773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _contextMenuIds: 00000000
+  _transitions: []
   _sprite: {fileID: 21300000, guid: 37059c2b1236c3c47854e13fa8e1df1d, type: 3}
   _spriteRenderer: {fileID: 712235040}
 --- !u!114 &712235044
@@ -2619,6 +2705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _contextMenuIds: 00000000
+  _transitions: []
   _sprite: {fileID: 21300000, guid: 07f1241b2b99958408776f1211db9f01, type: 3}
   _spriteRenderer: {fileID: 1431444708}
 --- !u!114 &1431444713
@@ -2663,6 +2750,7 @@ GameObject:
   - component: {fileID: 1445665327}
   - component: {fileID: 1445665326}
   - component: {fileID: 1445665325}
+  - component: {fileID: 1445665330}
   m_Layer: 0
   m_Name: CofeeMashine
   m_TagString: Item
@@ -2769,6 +2857,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _contextMenuIds: 00000000
+  _transitions:
+  - 0:1
   _sprite: {fileID: 0}
   _spriteRenderer: {fileID: 0}
 --- !u!114 &1445665327
@@ -2783,7 +2873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f699b8d4e68cd340ac145d30ec2c74f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentStateId: 0
+  _currentStateId: 1
 --- !u!114 &1445665328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2824,6 +2914,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7043478, y: 1.7217392}
   m_EdgeRadius: 0
+--- !u!114 &1445665330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445665322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630136b92834ed0408793b0e30c72a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 1
+  _contextMenuIds: 
+  _transitions: []
+  _sprite: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
 --- !u!1 &1480756495
 GameObject:
   m_ObjectHideFlags: 0
@@ -3439,6 +3546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _contextMenuIds: 00000000
+  _transitions: []
   _sprite: {fileID: 0}
   _spriteRenderer: {fileID: 0}
 --- !u!114 &1598886714
@@ -4089,6 +4197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _contextMenuIds: 00000000
+  _transitions: []
   _sprite: {fileID: 0}
   _spriteRenderer: {fileID: 0}
 --- !u!114 &1867306663
@@ -4848,6 +4957,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2940379566699289243, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940379566699289243, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940379566699289243, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
 --- !u!1001 &2997965262886883343
@@ -5308,6 +5429,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1480756500}
     m_Modifications:
+    - target: {fileID: 287793587, guid: ce4dd9b8d3fb37747a3bd33655050656, type: 3}
+      propertyPath: _sleep
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 8459588362717460961, guid: ce4dd9b8d3fb37747a3bd33655050656, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
