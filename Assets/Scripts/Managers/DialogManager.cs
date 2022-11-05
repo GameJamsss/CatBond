@@ -21,7 +21,6 @@ namespace Assets.Scripts.Managers
 
         public void StartDialog(Dialog dialog)
         {
-            Debug.Log("started");
             canvas.SetActive(true);
             _nextButton.onClick.RemoveListener(CloseDialog);
             _nextButton.onClick.AddListener(NextLine);
@@ -42,7 +41,7 @@ namespace Assets.Scripts.Managers
             _coroutine = StartCoroutine(StartSequence(line.GetLine()));
         }
         private void CloseDialog()
-        {
+        { 
             canvas.SetActive(false);
         }
         IEnumerator StartSequence(string sentence)
