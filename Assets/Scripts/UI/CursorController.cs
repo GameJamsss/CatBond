@@ -66,6 +66,9 @@ namespace Assets.Scripts.UI
 
                     if (collider.GetComponent<Plant>() != null)
                         collider.GetComponent<Plant>().Interract();
+
+                    if (collider.GetComponent<BoxController>() != null)
+                        collider.GetComponent<BoxController>().MoveBox();
                 }
             }
         }
