@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Managers;
 
-public class CupItem : MonoBehaviour
+public class CollecteableItem : MonoBehaviour
 {
     [SerializeField] private int _id = 0;
     private ItemInventoryManager _inventoryManager;
@@ -20,7 +20,7 @@ public class CupItem : MonoBehaviour
         {
             _inventoryManager.AddItem(_id);
             _isUsed = true;
-           // GetComponent<SpriteRenderer>().enabled  = false;
+            Destroy(gameObject);
         }       
     }
 }
