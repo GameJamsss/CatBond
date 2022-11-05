@@ -12,15 +12,11 @@ namespace Assets.Scripts.UI
         [SerializeField] private Sprite _click;
         [SerializeField] private float _clickTime = 0.6f;
 
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+
         [SerializeField] private float _checkCircleRadius = 1f;
 
         private Vector3 mousePosition;
-        private SpriteRenderer _spriteRenderer;
-
-        private void Awake()
-        {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-        }
 
         private void Start()
         {
