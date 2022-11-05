@@ -63,6 +63,9 @@ namespace Assets.Scripts.UI
 
                     //if (collider.GetComponent<Item>() != null)
                     //    collider.GetComponent<Item>().Click();
+
+                    if (collider.GetComponent<Plant>() != null)
+                        collider.GetComponent<Plant>().Interract();
                 }
             }
         }
