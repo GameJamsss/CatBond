@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _checkList;
 
     private bool _isOnPause = false;
 
@@ -14,24 +15,42 @@ public class GameMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         _pauseMenu.SetActive(false);
+        _checkList.SetActive(false);
     }
 
     void Update()
     {
         Pause();
+        CheckList();
     }
 
     private void Pause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_isOnPause)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SetGameOnPause();
+        }
+    }
+
+    public void SetGameOnPause()
+    {
+        if (!_isOnPause)
         {
             _isOnPause = true;
             _pauseMenu.SetActive(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && _isOnPause)
+        else
         {
             Continue();
         }
+    }
+
+    private void CheckList()
+    {
+        if (Input.GetKey(KeyCode.Tab))
+            _checkList.SetActive(true);
+        else
+            _checkList.SetActive(false);
     }
 
     public void Replay()

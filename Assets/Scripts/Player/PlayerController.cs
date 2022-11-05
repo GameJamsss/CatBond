@@ -34,12 +34,15 @@ namespace Assets.Scripts.Player
             if (Input.GetButton("Horizontal")) Run();
             else
             {
+                _animator.SetBool("IsWalking", false);
                 State = CharState.Idle;
             }
         }
 
         private void Run()
         {
+            _animator.SetBool("IsWalking", true);
+
             Vector3 direction = transform.right * Input.GetAxis("Horizontal");
             transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, _speed * Time.deltaTime);
 
