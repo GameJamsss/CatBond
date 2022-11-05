@@ -20,7 +20,7 @@ public class CupItem : MonoBehaviour
         {
             _inventoryManager.AddItem(_id);
             _isUsed = true;
-            GetComponent<SpriteRenderer>().enabled  = false;
+           // GetComponent<SpriteRenderer>().enabled  = false;
         }       
     }
 }

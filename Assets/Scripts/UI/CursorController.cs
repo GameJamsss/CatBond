@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Items;
+using Assets.Scripts.Domain.Objects;
 
 namespace Assets.Scripts.UI
 {
@@ -71,6 +71,9 @@ namespace Assets.Scripts.UI
 
                     if (collider.GetComponent<CupItem>() != null)
                         collider.GetComponent<CupItem>().Take();
+
+                    if (collider.GetComponent<ClickableObject>() != null)
+                        collider.GetComponent<ClickableObject>().Click();
                 }
             }
         }
