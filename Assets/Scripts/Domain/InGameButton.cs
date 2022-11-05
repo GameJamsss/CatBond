@@ -29,9 +29,9 @@ namespace Assets.Scripts.Domain
         {
 
             GameObject go = new GameObject { transform = { parent = parent.transform } };
-            Debug.Log("new poz: " + x + " " + y);
             go.transform.localPosition = new Vector2(x, y);
             SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+            sr.sortingOrder = 50;
             sr.sprite = staticSprite;
             CircleCollider2D c = go.AddComponent<CircleCollider2D>();
             c.isTrigger = true;
