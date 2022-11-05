@@ -3,7 +3,9 @@ using System.Linq;
 using Assets.Scripts.Domain.Items;
 using Assets.Scripts.Domain.State;
 using CSharpFunctionalExtensions;
+using UnityEditorInternal.VersionControl;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 namespace Assets.Scripts.Domain.Objects
 {
@@ -44,7 +46,7 @@ namespace Assets.Scripts.Domain.Objects
                         .GetStateContextMenu()
                         .Match(lcmb =>
                                 {
-                                    List<float> pozs = lcmb.Select((_, i) => i * _buttonSideOffset - lcmb.Count * _buttonSideOffset).ToList();
+                                    List<float> pozs = lcmb.Count % 2 != 0 ? CalcOddPoz(lcmb) : ClacEvenPoz(lcmb);
                                     foreach (var (contextMenuButton, i1) in lcmb.Select((cmb, i) => (cmb, i)))
                                     {
                                         contextMenuButton.SpawnButton(gameObject, pozs[i1], -1 * _buttonBottomOffset);
@@ -58,6 +60,18 @@ namespace Assets.Scripts.Domain.Objects
                     Debug.Log("State manager has not found. Add one.");
                 }
             );
+        }
+
+        private List<float> CalcOddPoz(List<IContextMenuButton> list)
+        {
+            float offsetBack = list.Count / 2f * _buttonSideOffset;
+            return list.Select((_, i) => i * _buttonSideOffset - offsetBack).ToList();
+        }
+
+        private List<float> ClacEvenPoz(List<IContextMenuButton> list)
+        {
+            float offsetBack = list.Count * _buttonBottomOffset / 2;
+            return list.Select((_, i) => i * _buttonSideOffset - offsetBack).ToList();
         }
 
         public bool Apply(int objId)
