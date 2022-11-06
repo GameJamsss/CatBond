@@ -4377,6 +4377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 1
   _itemId: 1
+  _nextState: -1
   _staticButtonSprite: {fileID: 0}
   _hoveredButtonSprite: {fileID: 0}
   _clickedButtonSprite: {fileID: 0}
@@ -7481,14 +7482,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1800389222, guid: 164bf8e273bb63441ba86ac01c39d9ef, type: 3}
-      propertyPath: _id
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1800389225, guid: 164bf8e273bb63441ba86ac01c39d9ef, type: 3}
-      propertyPath: _buttonSideOffset
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6230065035464677686, guid: 164bf8e273bb63441ba86ac01c39d9ef, type: 3}
       propertyPath: m_RootOrder
       value: 14
