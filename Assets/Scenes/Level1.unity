@@ -4922,6 +4922,8 @@ MonoBehaviour:
   - "\u0416\u0432\u0430\u0447\u043A\u0438! \u041A \u0441\u043E\u0436\u0430\u043B\u0435\u043D\u0438\u044E,
     \u0443 \u043C\u0435\u043D\u044F \u043D\u0435\u0442 \u0436\u0435\u0432\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0445
     \u0437\u0443\u0431\u043E\u0432."
+  - "\u041F\u0440\u0438\u043D\u0438\u043C\u0430\u0435\u0442 \u043C\u043E\u043D\u0435\u0442\u044B
+    25 \u0446\u0435\u043D\u0442\u043E\u0432."
   _staticButtonSprite: {fileID: 21300000, guid: 7a298580da8271448a3c9708fa97a642, type: 3}
   _hoveredButtonSprite: {fileID: 21300000, guid: 6f6143e9dc5ea3549abb5b8b829d7193, type: 3}
   _clickedButtonSprite: {fileID: 21300000, guid: 75b91a8e48cbdec429c3ed495a63cf33, type: 3}

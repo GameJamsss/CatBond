@@ -18,6 +18,7 @@ namespace Assets.Scripts.Managers
         [SerializeField] private string buttonEndText;
         private Dialog _currentDialog;
         private Coroutine _coroutine;
+        private AudioSource _audioSource;
 
         public void StartDialog(Dialog dialog)
         {
@@ -28,6 +29,7 @@ namespace Assets.Scripts.Managers
             _currentDialog = dialog;
             NextLine();
         }
+
         private void NextLine()
         {
             if (_coroutine != null) StopCoroutine(_coroutine);
@@ -40,23 +42,22 @@ namespace Assets.Scripts.Managers
             }
             _coroutine = StartCoroutine(StartSequence(line.GetLine()));
         }
+
         private void CloseDialog()
         { 
             canvas.SetActive(false);
         }
+
         IEnumerator StartSequence(string sentence)
         {
+            _audioSource.Play();
             _dialogText.text = "";
             foreach (var c in sentence)
             {
                 _dialogText.text += c;
                 yield return new WaitForSeconds(_sleep); ;
             }
-            
+            _audioSource.Stop();
         }
-
-
-
     }
-
 }
