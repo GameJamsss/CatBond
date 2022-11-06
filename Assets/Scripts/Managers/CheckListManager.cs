@@ -9,7 +9,9 @@ namespace Assets.Scripts.Managers
     {
         [SerializeField] private Toggle[] _toggles;
 
-
-
+        public void MarkItem(int id)
+        {
+            _toggles[id].isOn = true;
+        }
     }
 }
