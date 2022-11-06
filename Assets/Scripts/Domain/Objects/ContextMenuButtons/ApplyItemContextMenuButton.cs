@@ -43,7 +43,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                             .Tap(co => co.DestructContextMenu())
                             .Tap(co =>
                             {
-                                List<float> pozs = iim.GetItems().Count % 2 != 0 ? co.CalcOddPoz(iim.GetItems().ToList()) : co.ClacEvenPoz(iim.GetItems().ToList());\
+                                List<float> pozs = iim.GetItems().Count % 2 != 0 ? co.CalcOddPoz(iim.GetItems().ToList()) : co.ClacEvenPoz(iim.GetItems().ToList());
 
                                 for (int i = 0; i < iim.AllItems.Count; i++)
                                 {
