@@ -19,7 +19,7 @@ namespace Assets.Scripts.UI
         [SerializeField] private float _checkCircleRadius = 1f;
 
         private ItemInventoryManager _inventoryManager;
-
+        private bool clicked = false;
         private Vector3 mousePosition;
 
         private void Start()
@@ -35,7 +35,7 @@ namespace Assets.Scripts.UI
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             transform.position = Vector2.Lerp(transform.position, mousePosition, _moveSpeed);
 
-            if (CheckHovered())
+            if (clicked)
             {
                 _spriteRenderer.sprite = _hovered;
             }
@@ -44,11 +44,16 @@ namespace Assets.Scripts.UI
                 _spriteRenderer.sprite = _idle;
             }
 
-
-            if (Input.GetMouseButton(0))
+            if (!clicked && Input.GetMouseButtonDown(0))
             {
+                clicked = true;
                 CheckItems();
                 StartCoroutine(ClickCoroutine());
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                clicked = false;
             }
         }
 
@@ -66,7 +71,6 @@ namespace Assets.Scripts.UI
             foreach (var collider in colliders)
                 if (collider.CompareTag("Item"))
                     return true;
-
             return false;
         }
 
@@ -78,8 +82,6 @@ namespace Assets.Scripts.UI
             {
                 if (collider.CompareTag("Item"))
                 {
-                    Debug.Log("I click on item"); //calls few times in a row i dunno why
-
                     //if (collider.GetComponent<DecorativeItem>() != null)
                     //    collider.GetComponent<DecorativeItem>().Click();
 
@@ -104,7 +106,6 @@ namespace Assets.Scripts.UI
                     if (collider.GetComponent<ClickableObject>() != null)
                     {
                         collider.GetComponent<ClickableObject>().Click();
-                        _inventoryManager.Zac(collider.GetComponent<ClickableObject>());
                     }                      
                 }
             }

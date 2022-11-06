@@ -44,7 +44,6 @@ namespace Assets.Scripts.Domain.State
 
         public Maybe<int> Transition(int itemId)
         {
-            Debug.Log(_parsedTransactions);
             Tuple<int, int> t = _parsedTransactions.Find(i => i.Item1 == itemId);
             return t != null ? Maybe<int>.From(t.Item2) : Maybe<int>.None;
         }
