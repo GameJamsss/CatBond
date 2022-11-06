@@ -38,6 +38,7 @@ namespace Assets.Scripts.Domain.State
             _parsedTransactions = _parseTransactions(_transitions).Match(some => some, () =>
             {
                 Debug.Log("can not parse all _transactions");
+
                 return new List<Tuple<int, int>>();
             });
         }

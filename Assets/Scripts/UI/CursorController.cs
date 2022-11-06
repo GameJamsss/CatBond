@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Domain.Objects;
 using Assets.Scripts.Managers;
+using CSharpFunctionalExtensions;
 
 namespace Assets.Scripts.UI
 {
@@ -46,8 +47,14 @@ namespace Assets.Scripts.UI
 
             if (!clicked && Input.GetMouseButtonDown(0))
             {
+
                 clicked = true;
+                foreach (ClickableObject o in FindObjectsOfType(typeof(ClickableObject)))
+                {
+                    o.DestructContextMenu();
+                }
                 CheckItems();
+               
                 StartCoroutine(ClickCoroutine());
             }
 
@@ -82,31 +89,26 @@ namespace Assets.Scripts.UI
             {
                 if (collider.CompareTag("Item"))
                 {
-                    //if (collider.GetComponent<DecorativeItem>() != null)
-                    //    collider.GetComponent<DecorativeItem>().Click();
-
-                    //if (collider.GetComponent<Item>() != null)
                     //    collider.GetComponent<Item>().Click();
 
-                    if (collider.GetComponent<Plant>() != null)
-                        collider.GetComponent<Plant>().Interract();
+                    Plant p = collider.GetComponent<Plant>();
+                    if (p != null) p.Interract();
 
-                    if (collider.GetComponent<BoxController>() != null)
-                        collider.GetComponent<BoxController>().MoveBox();
+                    BoxController bc = collider.GetComponent<BoxController>();
+                    if (bc != null) bc.MoveBox();
 
-                    if (collider.GetComponent<BellRign>() != null)
-                        collider.GetComponent<BellRign>().PlaySound();
+                    BellRign br = collider.GetComponent<BellRign>();
+                    if (br != null) br.PlaySound();
 
-                    if (collider.GetComponent<MouseToy>() != null)
-                        collider.GetComponent<MouseToy>().Run();
+                    MouseToy mt = collider.GetComponent<MouseToy>();
+                    if (mt != null) mt.Run();
+                    
+                    CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
+                    if (collectableItem != null) collectableItem.Take();
 
-                    if (collider.GetComponent<CollecteableItem>() != null)
-                        collider.GetComponent<CollecteableItem>().Take();
-
-                    if (collider.GetComponent<ClickableObject>() != null)
-                    {
-                        collider.GetComponent<ClickableObject>().Click();
-                    }                      
+                    ClickableObject co = collider.GetComponent<ClickableObject>();
+                    if (co != null) co.Click();
+                    
                 }
             }
         }

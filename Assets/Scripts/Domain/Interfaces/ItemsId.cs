@@ -7,11 +7,11 @@ namespace Assets.Scripts.UI
 {
     public static class ItemsId
     {
-        public static Tuple<int, string> Cup = new(1, "");
-        public static Tuple<int, string> CoffeeBeans = new(2, "");
-        public static Tuple<int, string> Coin = new(3, "");
-        public static Tuple<int, string> PlasticBottle = new(4, "");
-        public static Tuple<int, string> CoffeeCup = new(5, "");
+        public static Tuple<int, string> Cup = new(1, "Assets\\Resources\\Cup.png");
+        public static Tuple<int, string> CoffeeBeans = new(2, "Assets\\Resources\\coffee beans.png");
+        public static Tuple<int, string> Coin = new(3, "Assets\\Resources\\money.png");
+        public static Tuple<int, string> PlasticBottle = new(4, "Assets\\Resources\\Bottle.png");
+        public static Tuple<int, string> CoffeeCup = new(5, "Assets\\Resources\\Cup.png");
 
         public static Dictionary<int, string> AllItems = new()
         {
