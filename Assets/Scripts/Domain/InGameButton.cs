@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.Domain.Objects;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
@@ -27,7 +28,6 @@ namespace Assets.Scripts.Domain
             Sprite hoverSprite,
             Sprite clickSprite)
         {
-
             GameObject go = new GameObject { transform = { parent = parent.transform } };
             go.transform.localPosition = new Vector2(x, y);
             SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
@@ -61,6 +61,10 @@ namespace Assets.Scripts.Domain
         void OnMouseDown()
         {
             _spriteRenderer.sprite = _spriteClick;
+            foreach (ClickableObject o in FindObjectsOfType(typeof(ClickableObject)))
+            {
+                o.DestructContextMenu();
+            }
             _action();
         }
 
