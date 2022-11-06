@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Assets.Scripts.Domain.Objects;
 using Assets.Scripts.Managers;
@@ -22,7 +23,7 @@ namespace Assets.Scripts.UI
         private ItemInventoryManager _inventoryManager;
         private bool clicked = false;
         private Vector3 mousePosition;
-
+        public ClickableObject _tmp;
         private void Start()
         {
             Cursor.visible = false;
@@ -49,10 +50,7 @@ namespace Assets.Scripts.UI
             {
 
                 clicked = true;
-                foreach (ClickableObject o in FindObjectsOfType(typeof(ClickableObject)))
-                {
-                    o.DestructContextMenu();
-                }
+                
                 CheckItems();
                
                 StartCoroutine(ClickCoroutine());
@@ -83,14 +81,20 @@ namespace Assets.Scripts.UI
 
         private void CheckItems()
         {
+
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _checkCircleRadius);
+            Debug.Log(colliders.Length + " colliders overlaping");
+            if (colliders.Length == 0)
+            {
+                Debug.Log(colliders.Length + " colliders overlaping2");
+                FindObjectsOfType<ClickableObject>().ToList().ForEach(co => co.ResetObject());
+                _tmp = null;
+            }
 
             foreach (var collider in colliders)
             {
                 if (collider.CompareTag("Item"))
                 {
-                    //    collider.GetComponent<Item>().Click();
-
                     Plant p = collider.GetComponent<Plant>();
                     if (p != null) p.Interract();
 
@@ -107,7 +111,12 @@ namespace Assets.Scripts.UI
                     if (collectableItem != null) collectableItem.Take();
 
                     ClickableObject co = collider.GetComponent<ClickableObject>();
-                    if (co != null) co.Click();
+                    if (co != null && co != _tmp)
+                    {
+                        FindObjectsOfType<ClickableObject>().ToList().ForEach(co => co.ResetObject());
+                        _tmp = co;
+                        co.Click();
+                    }
                     
                 }
             }

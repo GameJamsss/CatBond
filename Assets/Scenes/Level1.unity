@@ -4682,6 +4682,7 @@ GameObject:
   - component: {fileID: 1445665331}
   - component: {fileID: 1445665330}
   - component: {fileID: 1445665333}
+  - component: {fileID: 1445665334}
   m_Layer: 0
   m_Name: CofeeMashine
   m_TagString: Item
@@ -4787,7 +4788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _contextMenuIds: 00000000
+  _contextMenuIds: 0000000002000000
   _transitions:
   - 1:1
   _sprite: {fileID: 0}
@@ -5000,6 +5001,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1445665334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445665322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42646b411309b9d4e826e25d5cbcd9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 2
+  _staticButtonSprite: {fileID: 21300000, guid: d34d8f45d048ab242b9b591916a44432, type: 3}
+  _hoveredButtonSprite: {fileID: 21300000, guid: d8f4bb327c86e42458da219c5e6650a2, type: 3}
+  _clickedButtonSprite: {fileID: 21300000, guid: fa7b9b87ee2eeed4ebe949c90d9ab4a8, type: 3}
 --- !u!1 &1454164934
 GameObject:
   m_ObjectHideFlags: 0

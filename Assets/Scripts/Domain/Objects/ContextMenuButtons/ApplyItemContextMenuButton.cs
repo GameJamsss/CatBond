@@ -5,8 +5,8 @@ using Assets.Scripts.Domain.Items;
 using Assets.Scripts.Managers;
 using CSharpFunctionalExtensions;
 using UnityEngine;
-
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 using Random = System.Random;
 
 namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
@@ -43,21 +43,26 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                             .Tap(co => co.DestructContextMenu())
                             .Tap(co =>
                             {
-                                List<float> pozs = iim.GetItems().Count % 2 != 0 ? co.CalcOddPoz(iim.GetItems().ToList()) : co.ClacEvenPoz(iim.GetItems().ToList());
+                                Dictionary<int, GameObject> items = iim.GetItems();
+                                List<float> pozs = items.Count % 2 != 0 ? co.CalcOddPoz(items.ToList()) : co.ClacEvenPoz(items.ToList());
 
-                                for (int i = 0; i < iim.AllItems.Count; i++)
+                                int i = 0;
+                                List<IContextMenuButton> cmb = new();
+                                foreach (var keyValuePair in items)
                                 {
-                                    GameObject go = iim.AllItems[i];
+                                    GameObject go = keyValuePair.Value;
                                     Sprite sprite = go.GetComponent<Image>().sprite;
-                                    int itemId = iim.AllItems.Keys.ToArray()[i];
+                                    int itemId = keyValuePair.Key;
 
-                                    new ItemContextMenuButton(new Random().Next(),
+                                    cmb.Add(new ItemContextMenuButton(new Random().Next(),
                                             itemId,
                                             sprite,
                                             sprite,
                                             sprite)
-                                        .SpawnButton(parent, pozs[i], co._buttonBottomOffset);
+                                            );
+                                    i++;
                                 }
+                                co.ChangeContextMenu(cmb);
                             })
                             .TapError(Debug.Log);
                     },
