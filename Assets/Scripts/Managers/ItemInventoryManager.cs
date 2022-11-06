@@ -21,9 +21,7 @@ namespace Assets.Scripts.Managers
             if (id < _items.Length)
             {
                 _itemInInventory[id] = Instantiate(_items[id]);
-                //_itemInInventory[id].transform.parent = transform;
                 _itemInInventory[id].transform.SetParent(transform, false);
-
             }
         }
 

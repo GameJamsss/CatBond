@@ -8,6 +8,7 @@ public class GameMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _checkList;
+    [SerializeField] private GameObject _checkListRing;
 
     private bool _isOnPause = false;
 
@@ -16,6 +17,7 @@ public class GameMenu : MonoBehaviour
         Time.timeScale = 1;
         _pauseMenu.SetActive(false);
         _checkList.SetActive(false);
+        _checkListRing.SetActive(false);
     }
 
     void Update()
@@ -48,9 +50,15 @@ public class GameMenu : MonoBehaviour
     private void CheckList()
     {
         if (Input.GetKey(KeyCode.Tab))
+        {
             _checkList.SetActive(true);
+            _checkListRing.SetActive(true);
+        }
         else
+        {
             _checkList.SetActive(false);
+            _checkListRing.SetActive(false);
+        }           
     }
 
     public void Replay()
