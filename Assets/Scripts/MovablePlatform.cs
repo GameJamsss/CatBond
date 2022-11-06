@@ -18,10 +18,23 @@ namespace Assets.Scripts
         [SerializeField] private bool _isTankFull = false;
         [SerializeField] private bool _canMove = false;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip _working;
+        [SerializeField] private AudioClip _stops;
+        [SerializeField] private AudioClip _error;
+        [SerializeField] private AudioClip _toGo;
+
         private int i;
+        private AudioSource _audioSource;
+
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
 
         private void Start()
         {
+            _audioSource.Play();
             _fullSprite.SetActive(true);
             _emptySprite.SetActive(false);
             transform.position = points[startPoint].position;
@@ -29,10 +42,15 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            if (!_isTankFull || !_canMove) return;
-
+            if (!_isTankFull || !_canMove)
+            {
+                _audioSource.Stop();
+                return;
+            }
+          
             if (Vector2.Distance(transform.position, points[i].position) < 0.02f)
             {
+                
                 i++;
                 if (i == points.Length)
                 {
@@ -50,6 +68,7 @@ namespace Assets.Scripts
         {
             _canMove = false;
             yield return new WaitForSeconds(_waitTime);
+            _audioSource.Play();
             _canMove = true;
         }
 

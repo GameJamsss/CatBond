@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Domain.Objects;
 
 namespace Assets.Scripts.Managers
 {
@@ -20,7 +21,17 @@ namespace Assets.Scripts.Managers
             if (id < _items.Length)
             {
                 _itemInInventory[id] = Instantiate(_items[id]);
-                _itemInInventory[id].transform.parent = transform;
+                //_itemInInventory[id].transform.parent = transform;
+                _itemInInventory[id].transform.SetParent(transform, false);
+
+            }
+        }
+
+        public void Zac(ClickableObject _object)
+        {
+            for (int i = 0; i < _itemInInventory.Length; i++)
+            {
+                _object.Apply(i);
             }
         }
 

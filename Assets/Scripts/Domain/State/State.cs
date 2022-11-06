@@ -35,7 +35,7 @@ namespace Assets.Scripts.Domain.State
                     Debug.Log("Some shit happened in the process of gathering context menu components: " + err);
                     return new List<IContextMenuButton>();
                 });
-            _parseTransactions(_transitions).Match(some => some, () =>
+            _parsedTransactions = _parseTransactions(_transitions).Match(some => some, () =>
             {
                 Debug.Log("can not parse all _transactions");
                 return new List<Tuple<int, int>>();
@@ -44,6 +44,7 @@ namespace Assets.Scripts.Domain.State
 
         public Maybe<int> Transition(int itemId)
         {
+            Debug.Log(_parsedTransactions);
             Tuple<int, int> t = _parsedTransactions.Find(i => i.Item1 == itemId);
             return t != null ? Maybe<int>.From(t.Item2) : Maybe<int>.None;
         }

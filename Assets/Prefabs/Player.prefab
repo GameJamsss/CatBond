@@ -845,7 +845,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _walkClip: {fileID: 0}
+  _walkClips:
+  - {fileID: 8300000, guid: 490dca4b8a0768d40be099e1214bd4d9, type: 3}
+  - {fileID: 8300000, guid: 4eb0bbd34ad44ef4eb7b4029d686378f, type: 3}
+  - {fileID: 8300000, guid: a0a91804d6ef19a48ab4af82810ad290, type: 3}
+  - {fileID: 8300000, guid: adbc6d48aaf68084b96c5d3f09195042, type: 3}
+  - {fileID: 8300000, guid: 1cec25190ebbbb54fa4c789eaf2714c5, type: 3}
 --- !u!82 &7124577018959591704
 AudioSource:
   m_ObjectHideFlags: 0
@@ -858,7 +863,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 0.386
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1113,8 +1118,8 @@ MonoBehaviour:
   - {fileID: 155751807}
   - {fileID: 1247103004}
   m_Bounds:
-    m_Center: {x: -0.0012828112, y: 0, z: 0}
-    m_Extent: {x: 0.9473046, y: 1.3391304, z: 0}
+    m_Center: {x: -0.0012825727, y: 0, z: 0}
+    m_Extent: {x: 0.94730437, y: 1.3391304, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
