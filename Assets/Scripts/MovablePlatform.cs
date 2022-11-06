@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Assets.Scripts.Domain.State;
 
 namespace Assets.Scripts
 {
@@ -24,6 +25,8 @@ namespace Assets.Scripts
         [SerializeField] private AudioClip _error;
         [SerializeField] private AudioClip _toGo;
 
+        [SerializeField] private StateManager _stateManager;
+
         private int i;
         private AudioSource _audioSource;
 
@@ -42,6 +45,11 @@ namespace Assets.Scripts
 
         private void Update()
         {
+            if (_stateManager._currentStateId == 1)
+            {
+                FillTank();
+            }
+
             if (!_isTankFull || !_canMove)
             {
                 _audioSource.Stop();

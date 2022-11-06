@@ -7,9 +7,14 @@ public class Checkeble : MonoBehaviour
 {
     [SerializeField] private int _id = 0;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+            
+    //}
+
+    public void Mark()
     {
-        if (collision.CompareTag("Player"))
-            FindObjectOfType<CheckListManager>().MarkItem(_id);
+        FindObjectOfType<CheckListManager>().MarkItem(_id);
     }
 }

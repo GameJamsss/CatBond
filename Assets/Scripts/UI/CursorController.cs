@@ -109,6 +109,10 @@ namespace Assets.Scripts.UI
                     ClickableObject co = collider.GetComponent<ClickableObject>();
                     if (co != null) co.Click();
                     
+                    if (collider.GetComponent<Checkeble>() != null)
+                    {
+                        collider.GetComponent<Checkeble>().Mark();
+                    }
                 }
             }
         }
