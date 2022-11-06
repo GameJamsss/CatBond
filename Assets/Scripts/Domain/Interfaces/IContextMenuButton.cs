@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Domain.Items
 {
-    public abstract class IContextMenuButton : MonoBehaviour
+    public interface IContextMenuButton
     {
-        public abstract int GetId();
-        public abstract void SpawnButton(GameObject parent, float x, float y);
+        public int GetId();
+        public void SpawnButton(GameObject parent, float x, float y);
     }
 }

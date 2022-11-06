@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Domain.Items;
+using Assets.Scripts.Domain.Objects.ContextMenuButtons;
 using Assets.Scripts.Domain.State;
 using CSharpFunctionalExtensions;
 using UnityEditorInternal.VersionControl;
@@ -32,8 +33,10 @@ namespace Assets.Scripts.Domain.Objects
 
         public void DestructContextMenu()
         {
-            IContextMenuButton gos = FindObjectOfType<IContextMenuButton>();
-            Destroy(gos.gameObject);
+            GetItemContextMenuButton[] gos = FindObjectsOfType<GetItemContextMenuButton>();
+            gos.ToList().ForEach(Destroy);
+            InfoContextMenuButton[] gosi = FindObjectsOfType<InfoContextMenuButton>();
+            gosi.ToList().ForEach(Destroy);
         }
 
         public void Click()
