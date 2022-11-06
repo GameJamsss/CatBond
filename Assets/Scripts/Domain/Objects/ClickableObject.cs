@@ -28,15 +28,10 @@ namespace Assets.Scripts.Domain.Objects
                     });
         }
 
-        //void DestroyContextMenu()
-        //{
-        //    StartCoroutine(DestructContextMenu);
-        //} 
-
         public void DestructContextMenu()
         {
             InGameButton[] gos = FindObjectsOfType<InGameButton>();
-            gos.ToList().ForEach(p => DestroyImmediate(p.gameObject));
+            gos.ToList().ForEach(p => Destroy(p.gameObject));
         }
 
         public void Click()

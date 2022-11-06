@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Domain.Objects;
 using Assets.Scripts.Managers;
+using CSharpFunctionalExtensions;
 
 namespace Assets.Scripts.UI
 {
@@ -19,10 +20,8 @@ namespace Assets.Scripts.UI
         [SerializeField] private float _checkCircleRadius = 1f;
 
         private ItemInventoryManager _inventoryManager;
-
+        private bool clicked = false;
         private Vector3 mousePosition;
-
-        [HideInInspector] public GameObject _tmp;
 
         private void Start()
         {
@@ -37,7 +36,7 @@ namespace Assets.Scripts.UI
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             transform.position = Vector2.Lerp(transform.position, mousePosition, _moveSpeed);
 
-            if (CheckHovered())
+            if (clicked)
             {
                 _spriteRenderer.sprite = _hovered;
             }
@@ -46,11 +45,22 @@ namespace Assets.Scripts.UI
                 _spriteRenderer.sprite = _idle;
             }
 
-
-            if (Input.GetMouseButton(0))
+            if (!clicked && Input.GetMouseButtonDown(0))
             {
+
+                clicked = true;
+                foreach (ClickableObject o in FindObjectsOfType(typeof(ClickableObject)))
+                {
+                    o.DestructContextMenu();
+                }
                 CheckItems();
+               
                 StartCoroutine(ClickCoroutine());
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                clicked = false;
             }
         }
 
@@ -68,7 +78,6 @@ namespace Assets.Scripts.UI
             foreach (var collider in colliders)
                 if (collider.CompareTag("Item"))
                     return true;
-
             return false;
         }
 
@@ -80,27 +89,26 @@ namespace Assets.Scripts.UI
             {
                 if (collider.CompareTag("Item"))
                 {
-                    if (collider.GetComponent<Plant>() != null)
-                        collider.GetComponent<Plant>().Interract();
+                    //    collider.GetComponent<Item>().Click();
 
-                    if (collider.GetComponent<BoxController>() != null)
-                        collider.GetComponent<BoxController>().MoveBox();
+                    Plant p = collider.GetComponent<Plant>();
+                    if (p != null) p.Interract();
 
-                    if (collider.GetComponent<BellRign>() != null)
-                        collider.GetComponent<BellRign>().PlaySound();
+                    BoxController bc = collider.GetComponent<BoxController>();
+                    if (bc != null) bc.MoveBox();
 
-                    if (collider.GetComponent<MouseToy>() != null)
-                        collider.GetComponent<MouseToy>().Run();
+                    BellRign br = collider.GetComponent<BellRign>();
+                    if (br != null) br.PlaySound();
 
-                    if (collider.GetComponent<CollecteableItem>() != null)
-                        collider.GetComponent<CollecteableItem>().Take();
+                    MouseToy mt = collider.GetComponent<MouseToy>();
+                    if (mt != null) mt.Run();
+                    
+                    CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
+                    if (collectableItem != null) collectableItem.Take();
 
-                    if (collider.GetComponent<ClickableObject>() != null && _tmp != collider.gameObject)
-                    {
-                        _tmp = collider.gameObject;
-                        collider.GetComponent<ClickableObject>().Click();
-                        _inventoryManager.Zac(collider.GetComponent<ClickableObject>());
-                    }
+                    ClickableObject co = collider.GetComponent<ClickableObject>();
+                    if (co != null) co.Click();
+                    
                 }
             }
         }

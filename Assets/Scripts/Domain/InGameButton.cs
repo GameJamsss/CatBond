@@ -62,16 +62,18 @@ namespace Assets.Scripts.Domain
                 o.DestructContextMenu();
             }
             _action();
-
-            new Thread(_ => DestroyCoroutine());
+            Debug.Log("starting corutine");
+            StartCoroutine(DestroyCoroutine());
         }
 
-        void DestroyCoroutine()
+        IEnumerator DestroyCoroutine()
         {
-            // yield return new WaitForSeconds(2f);
-            Thread.Sleep(1000);
+            Debug.Log("in corutine");
+            yield return new WaitForSeconds(1f);
+            Debug.Log("past delayt");
             CursorController cursorC = FindObjectOfType<CursorController>();
             cursorC._tmp = null;
+            Debug.Log("cleared");
         }
 
         void OnMouseUp()

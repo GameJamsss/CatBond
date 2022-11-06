@@ -38,13 +38,13 @@ namespace Assets.Scripts.Domain.State
             _parsedTransactions = _parseTransactions(_transitions).Match(some => some, () =>
             {
                 Debug.Log("can not parse all _transactions");
+
                 return new List<Tuple<int, int>>();
             });
         }
 
         public Maybe<int> Transition(int itemId)
         {
-            Debug.Log(_parsedTransactions);
             Tuple<int, int> t = _parsedTransactions.Find(i => i.Item1 == itemId);
             return t != null ? Maybe<int>.From(t.Item2) : Maybe<int>.None;
         }
