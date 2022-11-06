@@ -32,10 +32,8 @@ namespace Assets.Scripts.Domain.Objects
 
         public void DestructContextMenu()
         {
-            foreach (Transform child in transform)
-            {
-               Destroy(child.gameObject);
-            }
+            IContextMenuButton gos = FindObjectOfType<IContextMenuButton>();
+            Destroy(gos.gameObject);
         }
 
         public void Click()
