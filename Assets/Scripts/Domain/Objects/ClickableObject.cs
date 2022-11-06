@@ -47,7 +47,6 @@ namespace Assets.Scripts.Domain.Objects
         {
             
             if (!InContextMenu) {
-                Debug.Log("FICASDFASDFOIJSDGO:FIj");
                 _stateManager.Match(
                 sm => 
                     sm
