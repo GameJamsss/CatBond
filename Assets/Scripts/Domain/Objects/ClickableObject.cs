@@ -9,8 +9,8 @@ namespace Assets.Scripts.Domain.Objects
 {
     public class ClickableObject : MonoBehaviour, IClickable, IApplicable
     {
-        [SerializeField] private float _buttonBottomOffset;
-        [SerializeField] private float _buttonSideOffset;
+        [SerializeField] public float _buttonBottomOffset;
+        [SerializeField] public float _buttonSideOffset;
         private Maybe<StateManager> _stateManager = Maybe<StateManager>.None;
         void Start()
         {

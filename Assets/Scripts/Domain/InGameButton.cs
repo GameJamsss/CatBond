@@ -60,7 +60,6 @@ namespace Assets.Scripts.Domain
             _action();
         }
 
-
         void OnMouseUp()
         {
             _spriteRenderer.sprite = _spriteStatic;
