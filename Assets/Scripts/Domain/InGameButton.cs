@@ -57,24 +57,9 @@ namespace Assets.Scripts.Domain
         void OnMouseDown()
         {
             _spriteRenderer.sprite = _spriteClick;
-            foreach (ClickableObject o in FindObjectsOfType(typeof(ClickableObject)))
-            {
-                o.DestructContextMenu();
-            }
             _action();
-            Debug.Log("starting corutine");
-            StartCoroutine(DestroyCoroutine());
         }
 
-        IEnumerator DestroyCoroutine()
-        {
-            Debug.Log("in corutine");
-            yield return new WaitForSeconds(1f);
-            Debug.Log("past delayt");
-            CursorController cursorC = FindObjectOfType<CursorController>();
-            cursorC._tmp = null;
-            Debug.Log("cleared");
-        }
 
         void OnMouseUp()
         {
