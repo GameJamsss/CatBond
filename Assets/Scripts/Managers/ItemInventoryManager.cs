@@ -18,7 +18,6 @@ namespace Assets.Scripts.Managers
                 .Try(() => ItemsId.AllItems[id])
                 .Map(spritePath =>
                 {
-                    Debug.Log("here");
                     Sprite sprite = Resources.Load<Sprite>(spritePath);
                     GameObject go = new GameObject();
                     Image i = go.AddComponent<Image>();
@@ -29,6 +28,24 @@ namespace Assets.Scripts.Managers
                 })
                 .Tap(go => _itemInInventory.Add(id, go))
                 .TapError(Debug.Log);
+        }
+
+        public Maybe<GameObject> GetItem(int id)
+        {
+            return Result.Try(() => _itemInInventory[id])
+                .Match(
+                    Maybe<GameObject>.From,
+                    err =>
+                        {
+                            Debug.Log(err);
+                            return Maybe<GameObject>.None;
+                        }
+                    );
+        }
+
+        public Dictionary<int, GameObject> GetItems()
+        {
+            return _itemInInventory;
         }
 
         public void RemoveItem(int id)
