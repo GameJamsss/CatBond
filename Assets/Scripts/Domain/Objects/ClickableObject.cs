@@ -58,13 +58,13 @@ namespace Assets.Scripts.Domain.Objects
             );
         }
 
-        private List<float> CalcOddPoz(List<IContextMenuButton> list)
+        public List<float> CalcOddPoz<T>(List<T> list)
         {
             float offsetBack = list.Count / 2f * _buttonSideOffset;
             return list.Select((_, i) => i * _buttonSideOffset - offsetBack).ToList();
         }
 
-        private List<float> ClacEvenPoz(List<IContextMenuButton> list)
+        public List<float> ClacEvenPoz<T>(List<T> list)
         {
             float offsetBack = list.Count * _buttonBottomOffset / 2;
             return list.Select((_, i) => i * _buttonSideOffset - offsetBack).ToList();
