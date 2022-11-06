@@ -10,7 +10,7 @@ namespace Assets.Scripts.Domain.State
     public class StateManager : MonoBehaviour
     {
         private List<State> _states = new();
-        [SerializeField] private int _currentStateId;
+        [SerializeField] public int _currentStateId;
 
         void Start()
         {
