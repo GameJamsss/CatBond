@@ -49,7 +49,8 @@ namespace Assets.Scripts.Managers
         }
 
         private void CloseDialog()
-        { 
+        {
+            _audioSource.Stop();
             canvas.SetActive(false);
         }
 
