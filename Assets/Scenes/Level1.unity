@@ -6829,6 +6829,10 @@ PrefabInstance:
       propertyPath: _id
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1800389225, guid: 164bf8e273bb63441ba86ac01c39d9ef, type: 3}
+      propertyPath: _buttonSideOffset
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6230065035464677686, guid: 164bf8e273bb63441ba86ac01c39d9ef, type: 3}
       propertyPath: m_RootOrder
       value: 14

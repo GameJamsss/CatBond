@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Assets.Scripts.Domain.Objects;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
-using Transform = UnityEngine.Transform;
+using Assets.Scripts.UI;
+using System.Collections;
+using System.Threading;
 
 namespace Assets.Scripts.Domain
 {
@@ -44,7 +40,7 @@ namespace Assets.Scripts.Domain
         }
 
         void Start()
-        { 
+        {
             _spriteRenderer.sprite = _spriteStatic;
         }
 
@@ -66,6 +62,16 @@ namespace Assets.Scripts.Domain
                 o.DestructContextMenu();
             }
             _action();
+
+            new Thread(_ => DestroyCoroutine());
+        }
+
+        void DestroyCoroutine()
+        {
+            // yield return new WaitForSeconds(2f);
+            Thread.Sleep(1000);
+            CursorController cursorC = FindObjectOfType<CursorController>();
+            cursorC._tmp = null;
         }
 
         void OnMouseUp()

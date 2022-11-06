@@ -22,6 +22,8 @@ namespace Assets.Scripts.UI
 
         private Vector3 mousePosition;
 
+        [HideInInspector] public GameObject _tmp;
+
         private void Start()
         {
             Cursor.visible = false;
@@ -78,14 +80,6 @@ namespace Assets.Scripts.UI
             {
                 if (collider.CompareTag("Item"))
                 {
-                    Debug.Log("I click on item"); //calls few times in a row i dunno why
-
-                    //if (collider.GetComponent<DecorativeItem>() != null)
-                    //    collider.GetComponent<DecorativeItem>().Click();
-
-                    //if (collider.GetComponent<Item>() != null)
-                    //    collider.GetComponent<Item>().Click();
-
                     if (collider.GetComponent<Plant>() != null)
                         collider.GetComponent<Plant>().Interract();
 
@@ -101,11 +95,12 @@ namespace Assets.Scripts.UI
                     if (collider.GetComponent<CollecteableItem>() != null)
                         collider.GetComponent<CollecteableItem>().Take();
 
-                    if (collider.GetComponent<ClickableObject>() != null)
+                    if (collider.GetComponent<ClickableObject>() != null && _tmp != collider.gameObject)
                     {
+                        _tmp = collider.gameObject;
                         collider.GetComponent<ClickableObject>().Click();
                         _inventoryManager.Zac(collider.GetComponent<ClickableObject>());
-                    }                      
+                    }
                 }
             }
         }

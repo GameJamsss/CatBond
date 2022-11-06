@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Domain.Items;
-using Assets.Scripts.Domain.Objects.ContextMenuButtons;
 using Assets.Scripts.Domain.State;
 using CSharpFunctionalExtensions;
-using UnityEditorInternal.VersionControl;
 using UnityEngine;
-using UnityEngine.U2D.IK;
 
 namespace Assets.Scripts.Domain.Objects
 {
@@ -31,12 +28,15 @@ namespace Assets.Scripts.Domain.Objects
                     });
         }
 
+        //void DestroyContextMenu()
+        //{
+        //    StartCoroutine(DestructContextMenu);
+        //} 
+
         public void DestructContextMenu()
         {
-            GetItemContextMenuButton[] gos = FindObjectsOfType<GetItemContextMenuButton>();
-            gos.ToList().ForEach(Destroy);
-            InfoContextMenuButton[] gosi = FindObjectsOfType<InfoContextMenuButton>();
-            gosi.ToList().ForEach(Destroy);
+            InGameButton[] gos = FindObjectsOfType<InGameButton>();
+            gos.ToList().ForEach(p => DestroyImmediate(p.gameObject));
         }
 
         public void Click()
