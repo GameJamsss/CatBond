@@ -7,9 +7,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 308145022720372689, guid: 965a00f409560a943b2a05380956a0d8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f5161a2230b396c478d976bde6213c48, type: 3}
     - target: {fileID: 1263943117245449635, guid: 965a00f409560a943b2a05380956a0d8, type: 3}
       propertyPath: m_Name
-      value: CupItem
+      value: CupItem Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3169751375871458794, guid: 965a00f409560a943b2a05380956a0d8, type: 3}
       propertyPath: m_Pivot.x
