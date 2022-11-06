@@ -118,6 +118,10 @@ namespace Assets.Scripts.UI
                         co.Click();
                     }
                     
+                    if (collider.GetComponent<Checkeble>() != null)
+                    {
+                        collider.GetComponent<Checkeble>().Mark();
+                    }
                 }
             }
         }
