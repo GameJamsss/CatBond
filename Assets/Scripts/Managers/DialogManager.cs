@@ -20,6 +20,11 @@ namespace Assets.Scripts.Managers
         private Coroutine _coroutine;
         private AudioSource _audioSource;
 
+        private void Start()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
         public void StartDialog(Dialog dialog)
         {
             canvas.SetActive(true);
