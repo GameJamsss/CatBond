@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Assets.Scripts.Domain.Items;
 using Assets.Scripts.Domain.State;
 using CSharpFunctionalExtensions;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 namespace Assets.Scripts.Domain.Objects
 {
@@ -12,6 +14,7 @@ namespace Assets.Scripts.Domain.Objects
         [SerializeField] public float _buttonBottomOffset;
         [SerializeField] public float _buttonSideOffset;
         private Maybe<StateManager> _stateManager = Maybe<StateManager>.None;
+        public bool InContextMenu = false;
         void Start()
         {
             
@@ -34,20 +37,21 @@ namespace Assets.Scripts.Domain.Objects
             gos.ToList().ForEach(p => Destroy(p.gameObject));
         }
 
+        public void ResetObject()
+        {
+            InContextMenu = false;
+            DestructContextMenu();
+        }
+
         public void Click()
         {
-            _stateManager.Match(
+            
+            if (!InContextMenu) {
+                _stateManager.Match(
                 sm => 
                     sm
                         .GetStateContextMenu()
-                        .Match(lcmb =>
-                                {
-                                    List<float> pozs = lcmb.Count % 2 != 0 ? CalcOddPoz(lcmb) : ClacEvenPoz(lcmb);
-                                    foreach (var (contextMenuButton, i1) in lcmb.Select((cmb, i) => (cmb, i)))
-                                    {
-                                        contextMenuButton.SpawnButton(gameObject, pozs[i1], -1 * _buttonBottomOffset);
-                                    }
-                                }, err =>
+                        .Match(SpawnButtons, err =>
                                 {
                                     Debug.Log(err);
                                 }),
@@ -55,7 +59,24 @@ namespace Assets.Scripts.Domain.Objects
                 {
                     Debug.Log("State manager has not found. Add one.");
                 }
-            );
+                );
+                InContextMenu = true;
+            }
+        }
+
+        public void ChangeContextMenu(List<IContextMenuButton> cmb)
+        {
+            DestructContextMenu();
+            SpawnButtons(cmb);
+        }
+
+        private void SpawnButtons(List<IContextMenuButton> cmb)
+        {
+            List<float> pozs = cmb.Count % 2 != 0 ? CalcOddPoz(cmb) : ClacEvenPoz(cmb);
+            foreach (var (contextMenuButton, i1) in cmb.Select((cmb, i) => (cmb, i)))
+            {
+                contextMenuButton.SpawnButton(gameObject, pozs[i1], -1 * _buttonBottomOffset);
+            }
         }
 
         public List<float> CalcOddPoz<T>(List<T> list)

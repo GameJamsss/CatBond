@@ -46,14 +46,15 @@ namespace Assets.Scripts.Managers
         {
             Result
                 .Try(() => AllItems[id])
-                .Map(gameObject =>
+                .Tap(o =>
                 {
-                    GameObject go = Instantiate(gameObject);
-                    go.transform.SetParent(transform, false);
-                    return go;
-
+                    if (Result.Try(() => _itemInInventory[id]).IsFailure)
+                    {
+                        GameObject go = Instantiate(o);
+                        go.transform.SetParent(transform, false);
+                        _itemInInventory.Add(id, go);
+                    }
                 })
-                .Tap(go => _itemInInventory.Add(id, go))
                 .TapError(Debug.Log);
         }
 

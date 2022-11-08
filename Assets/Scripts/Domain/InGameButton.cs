@@ -25,6 +25,7 @@ namespace Assets.Scripts.Domain
             Sprite clickSprite)
         {
             GameObject go = new GameObject { transform = { parent = parent.transform } };
+            go.tag = "Item";
             go.transform.localPosition = new Vector2(x, y);
             SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
             sr.sortingOrder = 50;
@@ -37,6 +38,7 @@ namespace Assets.Scripts.Domain
             script._spriteStatic = staticSprite;
             script._spriteHover = hoverSprite;
             script._spriteClick = clickSprite;
+            Debug.Log("new button " + go.transform.parent.name);
         }
 
         void Start()
