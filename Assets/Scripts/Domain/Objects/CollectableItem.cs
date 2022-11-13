@@ -27,7 +27,11 @@ public class CollectableItem : MonoBehaviour
             _animator.SetTrigger("Fade");
             _inventoryManager.AddItem(_id);
             _isUsed = true;
-            Destroy(gameObject);
         }       
+    }
+
+    private void Destroy()
+    {
+        Destroy(gameObject);
     }
 }
