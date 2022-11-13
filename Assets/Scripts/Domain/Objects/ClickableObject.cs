@@ -17,6 +17,7 @@ namespace Assets.Scripts.Domain.Objects
         private StateManager _stateManager;
         void Start()
         {
+            
             Result.Try(() => (GetComponent<StateManager>(), GetComponent<Collider2D>()))
                 .Ensure(
                     tup => tup.Item1 != null && tup.Item2 != null, "no state manager or collider2d in object: " + gameObject.name
