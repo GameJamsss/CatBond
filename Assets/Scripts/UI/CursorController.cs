@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Domain;
 using UnityEngine;
 using Assets.Scripts.Domain.Objects;
 using Assets.Scripts.Managers;
@@ -10,25 +11,22 @@ namespace Assets.Scripts.UI
 {
     public class CursorController : MonoBehaviour
     {
+        [SerializeField] private int _clickableObjectsLayerIndex = 1;
         [SerializeField] private float _moveSpeed = 100f;
         [SerializeField] private Sprite _idle;
         [SerializeField] private Sprite _click;
         [SerializeField] private Sprite _hovered;
-        [SerializeField] private float _clickTime = 0.6f;
 
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
         [SerializeField] private float _checkCircleRadius = 1f;
 
-        private ItemInventoryManager _inventoryManager;
-        private bool clicked = false;
+        private bool clicked;
         private Vector3 mousePosition;
-        public ClickableObject _tmp;
         private void Start()
         {
             Cursor.visible = false;
             _spriteRenderer.sprite = _idle;
-            _inventoryManager = FindObjectOfType<ItemInventoryManager>();
         }
 
         void Update()
@@ -48,12 +46,8 @@ namespace Assets.Scripts.UI
 
             if (!clicked && Input.GetMouseButtonDown(0))
             {
-
                 clicked = true;
-                
-                CheckItems();
-               
-                StartCoroutine(ClickCoroutine());
+                ClickItems();
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -62,68 +56,45 @@ namespace Assets.Scripts.UI
             }
         }
 
-        IEnumerator ClickCoroutine()
+        private void ClickItems()
         {
-            _spriteRenderer.sprite = _click;
-            yield return new WaitForSeconds(_clickTime);
-            _spriteRenderer.sprite = _idle;
-        }
+            List<ClickableObject> cos =
+                FindObjectsOfType<ClickableObject>().ToList();
 
-        private bool CheckHovered()
-        {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _checkCircleRadius);
+            List<Collider2D> cols = 
+                Physics2D
+                    .OverlapCircleAll(transform.position, _checkCircleRadius)
+                    .ToList()
+                    .FindAll(col => col.tag == "ClickableObject");
 
-            foreach (var collider in colliders)
-                if (collider.CompareTag("Item"))
-                    return true;
-            return false;
-        }
-
-        private void CheckItems()
-        {
-
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _checkCircleRadius);
-            Debug.Log(colliders.Length + " colliders overlaping");
-            if (colliders.Length == 0)
+            foreach (var col in cols)
             {
-                Debug.Log(colliders.Length + " colliders overlaping2");
-                FindObjectsOfType<ClickableObject>().ToList().ForEach(co => co.ResetObject());
-                _tmp = null;
-            }
-
-            foreach (var collider in colliders)
-            {
-                if (collider.CompareTag("Item"))
+                CollectableItem mbCollectableItem = col.GetComponent<CollectableItem>();
+                if (mbCollectableItem)
                 {
-                    Plant p = collider.GetComponent<Plant>();
-                    if (p != null) p.Interract();
+                    mbCollectableItem.Take();
+                }
 
-                    BoxController bc = collider.GetComponent<BoxController>();
-                    if (bc != null) bc.MoveBox();
+                InGameButton mbInGameButton = col.GetComponent<InGameButton>();
+                if (mbInGameButton)
+                {
+                    mbInGameButton.Click();
+                }
 
-                    BellRign br = collider.GetComponent<BellRign>();
-                    if (br != null) br.PlaySound();
-
-                    MouseToy mt = collider.GetComponent<MouseToy>();
-                    if (mt != null) mt.Run();
-                    
-                    CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
-                    if (collectableItem != null) collectableItem.Take();
-
-                    ClickableObject co = collider.GetComponent<ClickableObject>();
-                    if (co != null && co != _tmp)
-                    {
-                        FindObjectsOfType<ClickableObject>().ToList().ForEach(co => co.ResetObject());
-                        _tmp = co;
-                        co.Click();
-                    }
-                    
-                    if (collider.GetComponent<Checkeble>() != null)
-                    {
-                        collider.GetComponent<Checkeble>().Mark();
-                    }
+                ClickableObject mbClickableItem = col.GetComponent<ClickableObject>();
+                if (mbClickableItem)
+                {
+                    cos
+                        .FindAll(co => co != mbClickableItem)
+                        .ForEach(co => co.CloseContextMenu());
+                    mbClickableItem.Click();
                 }
             }
+        }
+
+        private void ClickOnItem()
+        {
+
         }
 
         private void OnDrawGizmos()

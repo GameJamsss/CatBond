@@ -40,7 +40,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                     {
                         Result
                             .Try(parent.GetComponent<ClickableObject>)
-                            .Tap(co => co.DestructContextMenu())
+                            .Tap(co => co.CloseContextMenu())
                             .Tap(co =>
                             {
                                 Dictionary<int, GameObject> items = iim.GetItems();

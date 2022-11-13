@@ -13,60 +13,50 @@ namespace Assets.Scripts.Domain.Objects
     {
         [SerializeField] public float _buttonBottomOffset;
         [SerializeField] public float _buttonSideOffset;
-        private Maybe<StateManager> _stateManager = Maybe<StateManager>.None;
-        public bool InContextMenu = false;
+        private Collider2D selfCollider;
+        private StateManager _stateManager;
         void Start()
         {
-            
-            _stateManager = Result
-                .Try(GetComponent<StateManager>)
+            selfCollider.tag = "ClickableObject";
+            Result.Try(() => (GetComponent<StateManager>(), GetComponent<Collider2D>()))
+                .Ensure(
+                    tup => tup.Item1 != null && tup.Item2 != null, "no state manager or collider2d in object: " + gameObject.name
+                    )
                 .Match(
-                    Maybe<StateManager>.From,
-                    err =>
+                    tup =>
                     {
-                        Debug.Log(
-                            "You forgot to add StateManager to object, I WON'T TELL YOU WHICH ONE BECAUSE I DON'T KNOW, FIND OUT YOURSELF: " +
-                            err);
-                        return Maybe<StateManager>.None;
-                    });
+                        selfCollider = tup.Item2;
+                        _stateManager = tup.Item1;
+                    },
+                    Debug.LogError);
         }
 
-        public void DestructContextMenu()
+        public void CloseContextMenu()
         {
+            selfCollider.enabled = true;
             InGameButton[] gos = FindObjectsOfType<InGameButton>();
             gos.ToList().ForEach(p => Destroy(p.gameObject));
         }
 
         public void ResetObject()
         {
-            InContextMenu = false;
-            DestructContextMenu();
+            CloseContextMenu();
         }
 
         public void Click()
         {
-            
-            if (!InContextMenu) {
-                _stateManager.Match(
-                sm => 
-                    sm
-                        .GetStateContextMenu()
-                        .Match(SpawnButtons, err =>
-                                {
-                                    Debug.Log(err);
-                                }),
-                () =>
+            _stateManager
+                .GetStateContextMenu()
+                .Match(cmb =>
                 {
-                    Debug.Log("State manager has not found. Add one.");
-                }
-                );
-                InContextMenu = true;
-            }
+                    SpawnButtons(cmb);
+                    selfCollider.enabled = false;
+                }, Debug.LogError);
         }
 
         public void ChangeContextMenu(List<IContextMenuButton> cmb)
         {
-            DestructContextMenu();
+            CloseContextMenu();
             SpawnButtons(cmb);
         }
 
@@ -93,14 +83,7 @@ namespace Assets.Scripts.Domain.Objects
 
         public bool Apply(int objId)
         {
-            return _stateManager.Match(
-                sm => sm.TransitState(objId),
-                () =>
-                {
-                    Debug.Log("State manager has not found. Add one.");
-                    return false;
-                }
-            );
+            return _stateManager.TransitState(objId);
         }
     }
 }

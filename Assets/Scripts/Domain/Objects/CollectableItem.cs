@@ -2,16 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Managers;
+using CSharpFunctionalExtensions;
 
 public class CollectableItem : MonoBehaviour
 {
     [SerializeField] private int _id = 0;
+    private Collider2D selfCollider;
     private ItemInventoryManager _inventoryManager;
     private bool _isUsed = false;
 
     private void Start()
     {
+        selfCollider.tag = "ClickableObject";
         _inventoryManager = FindObjectOfType<ItemInventoryManager>();
+        Result
+            .Try(GetComponent<Collider2D>)
+            .Ensure(col => col != null, "no collider2d in the object: " + gameObject.name)
+            .Match(
+                suc => selfCollider = suc,
+                Debug.LogError);
     }
 
     public void Take()
@@ -20,7 +29,6 @@ public class CollectableItem : MonoBehaviour
         {
             _inventoryManager.AddItem(_id);
             _isUsed = true;
-            Destroy(gameObject);
         }       
     }
 }

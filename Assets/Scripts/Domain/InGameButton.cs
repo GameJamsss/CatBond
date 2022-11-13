@@ -4,10 +4,11 @@ using UnityEngine;
 using Assets.Scripts.UI;
 using System.Collections;
 using System.Threading;
+using Assets.Scripts.Domain.Items;
 
 namespace Assets.Scripts.Domain
 {
-    public class InGameButton : MonoBehaviour
+    public class InGameButton : MonoBehaviour, IClickable
     {
         private Sprite _spriteStatic;
         private Sprite _spriteHover;
@@ -25,7 +26,7 @@ namespace Assets.Scripts.Domain
             Sprite clickSprite)
         {
             GameObject go = new GameObject { transform = { parent = parent.transform } };
-            go.tag = "Item";
+            go.tag = "ClickableItem";
             go.transform.localPosition = new Vector2(x, y);
             SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
             sr.sortingOrder = 50;
@@ -38,7 +39,6 @@ namespace Assets.Scripts.Domain
             script._spriteStatic = staticSprite;
             script._spriteHover = hoverSprite;
             script._spriteClick = clickSprite;
-            Debug.Log("new button " + go.transform.parent.name);
         }
 
         void Start()
@@ -56,15 +56,15 @@ namespace Assets.Scripts.Domain
             _spriteRenderer.sprite = _spriteStatic;
         }
 
-        void OnMouseDown()
-        {
-            _spriteRenderer.sprite = _spriteClick;
-            _action();
-        }
-
         void OnMouseUp()
         {
             _spriteRenderer.sprite = _spriteStatic;
+        }
+
+        public void Click()
+        {
+            _spriteRenderer.sprite = _spriteClick;
+            _action();
         }
     }
 }

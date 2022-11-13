@@ -50,8 +50,6 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                         .Ensure(co => co != null, "no clickable object")
                         .Tap(co => co.ResetObject())
                         .Map(_ => FindObjectOfType<CursorController>())
-                        .Ensure(cc => cc != null, "no cursor controller")
-                        .Tap(cc => cc._tmp = null)
                         .TapError(Debug.Log);
                 },
                 _staticButtonSprite,
