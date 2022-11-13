@@ -48,7 +48,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                         .Tap(sm => sm.TransitState(_itemId))
                         .Map(_ => parent.GetComponent<ClickableObject>())
                         .Ensure(co => co != null, "no clickable object")
-                        .Tap(co => co.ResetObject())
+                        .Tap(co => co.CloseContextMenu())
                         .Map(_ => FindObjectOfType<CursorController>())
                         .TapError(Debug.Log);
                 },

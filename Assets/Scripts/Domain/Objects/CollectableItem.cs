@@ -20,13 +20,16 @@ public class CollectableItem : MonoBehaviour
 
     private void Start()
     {
-        selfCollider.tag = ConfigClass.ClickableItemTag;
+
         _inventoryManager = FindObjectOfType<ItemInventoryManager>();
         Result
             .Try(GetComponent<Collider2D>)
             .Ensure(col => col != null, "no collider2d in the object: " + gameObject.name)
             .Match(
-                suc => selfCollider = suc,
+                suc => {
+                    selfCollider = suc;
+                    selfCollider.tag = ConfigClass.ClickableItemTag;
+                },
                 Debug.LogError);
     }
 
