@@ -67,34 +67,38 @@ namespace Assets.Scripts.UI
                     .ToList()
                     .FindAll(col => col.tag == ConfigClass.ClickableItemTag);
 
-            foreach (var col in cols)
+            if (cols.Count == 0)
             {
-                CollectableItem mbCollectableItem = col.GetComponent<CollectableItem>();
-                if (mbCollectableItem)
+                foreach (var col in cols)
                 {
-                    mbCollectableItem.Take();
-                }
+                    CollectableItem mbCollectableItem = col.GetComponent<CollectableItem>();
+                    if (mbCollectableItem)
+                    {
+                        mbCollectableItem.Take();
+                    }
 
-                InGameButton mbInGameButton = col.GetComponent<InGameButton>();
-                if (mbInGameButton)
-                {
-                    mbInGameButton.Click();
-                }
+                    InGameButton mbInGameButton = col.GetComponent<InGameButton>();
+                    if (mbInGameButton)
+                    {
+                        mbInGameButton.Click();
+                    }
 
-                ClickableObject mbClickableItem = col.GetComponent<ClickableObject>();
-                if (mbClickableItem)
-                {
-                    cos
-                        .FindAll(co => co != mbClickableItem)
-                        .ForEach(co => co.CloseContextMenu());
-                    mbClickableItem.Click();
+                    ClickableObject mbClickableItem = col.GetComponent<ClickableObject>();
+                    if (mbClickableItem)
+                    {
+                        cos
+                            .FindAll(co => co != mbClickableItem)
+                            .ForEach(co => co.CloseContextMenu());
+                        mbClickableItem.Click();
+                    }
                 }
             }
-        }
+            else
+            {
+                cos.ForEach(co => co.CloseContextMenu());
+            }
 
-        private void ClickOnItem()
-        {
-
+            
         }
 
         private void OnDrawGizmos()

@@ -43,7 +43,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                                 tup.Item2.AddItem(_itemId);
                                 if (_nextState != -1) tup.Item1.ApplyState(_nextState);
                             },
-                            error => Debug.Log("We are stupid fucks. No inventory manager is around: " + error)
+                            error => Debug.LogError("We are stupid fucks. No inventory manager is around: " + error)
                         );
                 },
                 _staticButtonSprite,

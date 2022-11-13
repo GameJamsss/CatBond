@@ -17,7 +17,6 @@ namespace Assets.Scripts.Domain.Objects
         private StateManager _stateManager;
         void Start()
         {
-            selfCollider.tag = ConfigClass.ClickableItemTag;
             Result.Try(() => (GetComponent<StateManager>(), GetComponent<Collider2D>()))
                 .Ensure(
                     tup => tup.Item1 != null && tup.Item2 != null, "no state manager or collider2d in object: " + gameObject.name
@@ -26,6 +25,7 @@ namespace Assets.Scripts.Domain.Objects
                     tup =>
                     {
                         selfCollider = tup.Item2;
+                        selfCollider.tag = ConfigClass.ClickableItemTag;
                         _stateManager = tup.Item1;
                     },
                     Debug.LogError);
@@ -44,6 +44,7 @@ namespace Assets.Scripts.Domain.Objects
                 .GetStateContextMenu()
                 .Match(cmb =>
                 {
+                    CloseContextMenu();
                     SpawnButtons(cmb);
                     selfCollider.enabled = false;
                 }, Debug.LogError);

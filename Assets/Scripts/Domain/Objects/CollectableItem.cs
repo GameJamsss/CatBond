@@ -10,7 +10,7 @@ public class CollectableItem : MonoBehaviour
     [SerializeField] private int _id = 0;
     private Collider2D selfCollider;
     private ItemInventoryManager _inventoryManager;
-    private bool _isUsed = false;
+    private bool _isUsed;
     private Animator _animator;
 
     private void Awake()
@@ -20,14 +20,19 @@ public class CollectableItem : MonoBehaviour
 
     private void Start()
     {
-        selfCollider.tag = ConfigClass.ClickableItemTag;
+        
         _inventoryManager = FindObjectOfType<ItemInventoryManager>();
         Result
             .Try(GetComponent<Collider2D>)
             .Ensure(col => col != null, "no collider2d in the object: " + gameObject.name)
             .Match(
-                suc => selfCollider = suc,
+                suc =>
+                {
+                    selfCollider = suc;
+                    selfCollider.tag = ConfigClass.ClickableItemTag;
+                },
                 Debug.LogError);
+        
     }
 
     public void Take()

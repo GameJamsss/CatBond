@@ -32,13 +32,12 @@ namespace Assets.Scripts.Domain.State
                 .Map(lc => lc.FindAll(c => _contextMenuIds.Contains(c.GetId())))
                 .Match(resultList => resultList, err =>
                 {
-                    Debug.Log("Some shit happened in the process of gathering context menu components: " + err);
+                    Debug.LogError("Some shit happened in the process of gathering context menu components: " + gameObject.name + ", " + err);
                     return new List<IContextMenuButton>();
                 });
             _parsedTransactions = _parseTransactions(_transitions).Match(some => some, () =>
             {
-                Debug.Log("can not parse all _transactions");
-
+                Debug.LogError("can not parse all _transactions" + gameObject.name);
                 return new List<Tuple<int, int>>();
             });
         }
@@ -51,7 +50,7 @@ namespace Assets.Scripts.Domain.State
 
         public void ApplySprite()
         {
-            if (_sprite != null) _spriteRenderer.sprite = _sprite;
+            if (_sprite != null && _spriteRenderer != null) _spriteRenderer.sprite = _sprite;
         }
 
         public void ApplySound()
