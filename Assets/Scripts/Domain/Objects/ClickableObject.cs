@@ -11,13 +11,13 @@ namespace Assets.Scripts.Domain.Objects
 {
     public class ClickableObject : MonoBehaviour, IClickable, IApplicable
     {
-        [SerializeField] public float _buttonBottomOffset;
-        [SerializeField] public float _buttonSideOffset;
+        public readonly float _buttonBottomOffset;
+        public readonly float _buttonSideOffset;
         private Collider2D selfCollider;
         private StateManager _stateManager;
         void Start()
         {
-            selfCollider.tag = "ClickableObject";
+            selfCollider.tag = ConfigClass.ClickableItemTag;
             Result.Try(() => (GetComponent<StateManager>(), GetComponent<Collider2D>()))
                 .Ensure(
                     tup => tup.Item1 != null && tup.Item2 != null, "no state manager or collider2d in object: " + gameObject.name
@@ -36,11 +36,6 @@ namespace Assets.Scripts.Domain.Objects
             selfCollider.enabled = true;
             InGameButton[] gos = FindObjectsOfType<InGameButton>();
             gos.ToList().ForEach(p => Destroy(p.gameObject));
-        }
-
-        public void ResetObject()
-        {
-            CloseContextMenu();
         }
 
         public void Click()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Domain;
 using UnityEngine;
 using Assets.Scripts.Managers;
 using CSharpFunctionalExtensions;
@@ -19,7 +20,7 @@ public class CollectableItem : MonoBehaviour
 
     private void Start()
     {
-        selfCollider.tag = "ClickableObject";
+        selfCollider.tag = ConfigClass.ClickableItemTag;
         _inventoryManager = FindObjectOfType<ItemInventoryManager>();
         Result
             .Try(GetComponent<Collider2D>)

@@ -65,7 +65,7 @@ namespace Assets.Scripts.UI
                 Physics2D
                     .OverlapCircleAll(transform.position, _checkCircleRadius)
                     .ToList()
-                    .FindAll(col => col.tag == "ClickableObject");
+                    .FindAll(col => col.tag == ConfigClass.ClickableItemTag);
 
             foreach (var col in cols)
             {

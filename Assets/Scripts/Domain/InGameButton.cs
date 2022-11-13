@@ -26,7 +26,7 @@ namespace Assets.Scripts.Domain
             Sprite clickSprite)
         {
             GameObject go = new GameObject { transform = { parent = parent.transform } };
-            go.tag = "ClickableItem";
+            go.tag = ConfigClass.ClickableItemTag;
             go.transform.localPosition = new Vector2(x, y);
             SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
             sr.sortingOrder = 50;
