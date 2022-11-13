@@ -51,7 +51,6 @@ namespace Assets.Scripts.Domain.State
             return getState(_currentStateId)
                 .Map(state =>
                 {
-                    Debug.LogError(state);
                     return state.ContextMenu;
                 });
         }

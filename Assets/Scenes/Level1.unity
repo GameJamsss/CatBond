@@ -434,9 +434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.5
-  _buttonSideOffset: 0.5
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!114 &16301781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,7 +623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45771248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.64, y: -0.02, z: 0}
+  m_LocalPosition: {x: 15.9, y: -0.02, z: 0}
   m_LocalScale: {x: 0.7838646, y: 0.7838646, z: 0.7838646}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1155,9 +1154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
+  _buttonBottomOffset: 0
   _buttonSideOffset: 0
-  InContextMenu: 0
 --- !u!61 &174799805
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1506,9 +1504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.4
-  _buttonSideOffset: 2
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!114 &209735314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2072,9 +2069,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
-  _buttonSideOffset: 1
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!114 &284034408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2608,9 +2604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
-  _buttonSideOffset: 2
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!114 &418220295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2846,7 +2841,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2000
+  m_SortingOrder: -2001
   m_Sprite: {fileID: 21300000, guid: cbe452dbe882d9045ba93dd1f406fdb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3278,9 +3273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
-  _buttonSideOffset: 0.3
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!61 &712235046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3405,9 +3399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
+  _buttonBottomOffset: 0
   _buttonSideOffset: 0
-  InContextMenu: 0
 --- !u!61 &762536528
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3633,9 +3626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
+  _buttonBottomOffset: 0
   _buttonSideOffset: 0
-  InContextMenu: 0
 --- !u!61 &806187688
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3931,8 +3923,12 @@ GameObject:
   - component: {fileID: 878021400}
   - component: {fileID: 878021399}
   - component: {fileID: 878021405}
-  - component: {fileID: 878021406}
+  - component: {fileID: 878021410}
+  - component: {fileID: 878021409}
+  - component: {fileID: 878021408}
   - component: {fileID: 878021407}
+  - component: {fileID: 878021406}
+  - component: {fileID: 878021411}
   m_Layer: 0
   m_Name: Coffee jar
   m_TagString: Item
@@ -4043,30 +4039,98 @@ MonoBehaviour:
   m_GameObject: {fileID: 878021398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f2190cecaf7b014790dcdf2c4a5ab95, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bce592e610322945932271dae0198d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 2
---- !u!95 &878021407
-Animator:
-  serializedVersion: 4
+  _id: 1
+  _itemId: 2
+  _nextState: 1
+  _staticButtonSprite: {fileID: 21300000, guid: 88f50c1c09e546d44937c99009a965c8, type: 3}
+  _hoveredButtonSprite: {fileID: 21300000, guid: 072364bd7e7b1fd428999c4514308b82, type: 3}
+  _clickedButtonSprite: {fileID: 21300000, guid: 8dd336fce08d49b4f8effc0c6ec37f4c, type: 3}
+--- !u!114 &878021407
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878021398}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 64fb3f3a738b6c34ca5edc1a66102043, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2b09e353025d145880387ee86e3d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
+  _info:
+  - "\u044D\u0442\u043E \u043A\u043E\u0444\u0435."
+  _staticButtonSprite: {fileID: 21300000, guid: 7a298580da8271448a3c9708fa97a642, type: 3}
+  _hoveredButtonSprite: {fileID: 21300000, guid: 6f6143e9dc5ea3549abb5b8b829d7193, type: 3}
+  _clickedButtonSprite: {fileID: 21300000, guid: 75b91a8e48cbdec429c3ed495a63cf33, type: 3}
+--- !u!114 &878021408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878021398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630136b92834ed0408793b0e30c72a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
+  _contextMenuIds: 0000000001000000
+  _transitions: []
+  _sprite: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
+--- !u!114 &878021409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878021398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f699b8d4e68cd340ac145d30ec2c74f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentStateId: 0
+--- !u!114 &878021410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878021398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonBottomOffset: 0.4
+  _buttonSideOffset: 1.5
+--- !u!114 &878021411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878021398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630136b92834ed0408793b0e30c72a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 1
+  _contextMenuIds: 00000000
+  _transitions: []
+  _sprite: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onTransitionClip: {fileID: 0}
 --- !u!4 &891783017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2940379566699289242, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
@@ -4128,9 +4192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
-  _buttonSideOffset: 3
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!114 &990518510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4891,9 +4954,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.5
-  _buttonSideOffset: 1
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!1 &1324330856 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2730303831813202924, guid: 73740d3c8f60a994ea90caf33513cc74, type: 3}
@@ -4956,7 +5018,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2000
+  m_SortingOrder: -2001
   m_Sprite: {fileID: 21300000, guid: cbe452dbe882d9045ba93dd1f406fdb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -5210,9 +5272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.4
-  _buttonSideOffset: 2
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!61 &1362645991
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5550,9 +5611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
-  _buttonSideOffset: 0.3
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!114 &1431444715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5820,9 +5880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.5
-  _buttonSideOffset: 2
-  InContextMenu: 0
+  _buttonBottomOffset: 0.4
+  _buttonSideOffset: 1
 --- !u!61 &1445665329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6011,13 +6070,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1445665322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42646b411309b9d4e826e25d5cbcd9f6, type: 3}
+  m_Script: {fileID: 11500000, guid: aa2b09e353025d145880387ee86e3d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 2
-  _staticButtonSprite: {fileID: 21300000, guid: d34d8f45d048ab242b9b591916a44432, type: 3}
-  _hoveredButtonSprite: {fileID: 21300000, guid: d8f4bb327c86e42458da219c5e6650a2, type: 3}
-  _clickedButtonSprite: {fileID: 21300000, guid: fa7b9b87ee2eeed4ebe949c90d9ab4a8, type: 3}
+  _info:
+  - xczcxz
+  _staticButtonSprite: {fileID: 21300000, guid: 7a298580da8271448a3c9708fa97a642, type: 3}
+  _hoveredButtonSprite: {fileID: 21300000, guid: 6f6143e9dc5ea3549abb5b8b829d7193, type: 3}
+  _clickedButtonSprite: {fileID: 21300000, guid: 75b91a8e48cbdec429c3ed495a63cf33, type: 3}
 --- !u!1 &1454164934
 GameObject:
   m_ObjectHideFlags: 0
@@ -6594,9 +6655,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
+  _buttonBottomOffset: 0
   _buttonSideOffset: 0
-  InContextMenu: 0
 --- !u!61 &1535601168
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7335,9 +7395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
-  _buttonSideOffset: 0.4
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!114 &1598886716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7526,9 +7585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.4
+  _buttonBottomOffset: 0
   _buttonSideOffset: 0
-  InContextMenu: 0
 --- !u!114 &1716223865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8341,9 +8399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
-  _buttonSideOffset: 2
-  InContextMenu: 0
+  _buttonBottomOffset: 0
+  _buttonSideOffset: 0
 --- !u!61 &1867306665
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8719,9 +8776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0.3
+  _buttonBottomOffset: 0
   _buttonSideOffset: 0
-  InContextMenu: 0
 --- !u!61 &2048303811
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9125,6 +9181,10 @@ PrefabInstance:
       propertyPath: _buttonBottomOffset
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 1348457436403054452, guid: b7900f699e56da74e8e6914e96fad3af, type: 3}
+      propertyPath: _transitions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2192084122903837236, guid: b7900f699e56da74e8e6914e96fad3af, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -9369,10 +9429,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 2940379566699289236, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2940379566699289240, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
       propertyPath: _boxCollider
       value: 
       objectReference: {fileID: 878021405}
+    - target: {fileID: 2940379566699289241, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2940379566699289242, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
       propertyPath: m_RootOrder
       value: 6

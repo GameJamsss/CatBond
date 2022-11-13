@@ -61,13 +61,13 @@ namespace Assets.Scripts.UI
             List<ClickableObject> cos =
                 FindObjectsOfType<ClickableObject>().ToList();
 
-            List<Collider2D> cols = 
+            List<Collider2D> cols =
                 Physics2D
                     .OverlapCircleAll(transform.position, _checkCircleRadius)
                     .ToList()
                     .FindAll(col => col.tag == ConfigClass.ClickableItemTag);
 
-            if (cols.Count == 0)
+            if (cols.Count != 0)
             {
                 foreach (var col in cols)
                 {

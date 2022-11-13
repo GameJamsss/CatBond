@@ -8,6 +8,6 @@ namespace Assets.Scripts.Domain
 {
     public static class ConfigClass
     {
-        public static string ClickableItemTag = "ClickableObject";
+        public static string ClickableItemTag = "Item";
     }
 }
