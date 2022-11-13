@@ -48,7 +48,6 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                         .Map(_ => parent.GetComponent<ClickableObject>())
                         .Ensure(co => co != null, "no clickable object")
                         .Tap(co => co.CloseContextMenu())
-                        .Map(_ => FindObjectOfType<CursorController>())
                         .TapError(Debug.Log);
                 },
                 _staticButtonSprite,
