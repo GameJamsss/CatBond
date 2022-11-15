@@ -1,88 +1,81 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Assets.Scripts.Domain.Objects;
-using Assets.Scripts.UI;
 using CSharpFunctionalExtensions;
-using System;
+using System.Linq;
+using Assets.Scripts.Domain;
+using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using Unity.VisualScripting;
 
 namespace Assets.Scripts.Managers
 {
     public class ItemInventoryManager : MonoBehaviour
     {
-        private readonly Dictionary<int, GameObject> _itemInInventory = new();
-
-        [SerializeField] private GameObject _cup;
-        [SerializeField] private GameObject _coffeeBeans;
-        [SerializeField] private GameObject _coin;
-        [SerializeField] private GameObject _plasticBottle;
-        [SerializeField] private GameObject _coffeeCup;
-
-        [HideInInspector] public Tuple<int, GameObject> Cup;
-        [HideInInspector] public Tuple<int, GameObject> CoffeeBeans;
-        [HideInInspector] public Tuple<int, GameObject> Coin;
-        [HideInInspector] public Tuple<int, GameObject> PlasticBottle;
-        [HideInInspector] public Tuple<int, GameObject> CoffeeCup;
-
-        [HideInInspector] public Dictionary<int, GameObject> AllItems = new();
+        [SerializeField] private Sprite _backgroundSprite;
+        private readonly Dictionary<int, Sprite> _allSprites = new();
+        private readonly Dictionary<int, GameObject> _itemsInInventory = new();
 
         private void Start()
         {
-            Cup = new(1, _cup);
-            CoffeeBeans = new(2, _coffeeBeans);
-            Coin = new(3, _coin);
-            PlasticBottle = new(4, _plasticBottle);
-            CoffeeCup = new(5, _coffeeCup);
-
-            AllItems.Add(Cup.Item1, Cup.Item2);
-            AllItems.Add(CoffeeBeans.Item1, CoffeeBeans.Item2);
-            AllItems.Add(Coin.Item1, Coin.Item2);
-            AllItems.Add(PlasticBottle.Item1, PlasticBottle.Item2);
-            AllItems.Add(CoffeeCup.Item1, CoffeeCup.Item2);
+            Result.Try(() => 
+                    Resources
+                    .LoadAll<Sprite>(ConfigClass.InventoryItemsPath)
+                    .ToList()
+                    .ForEach(sprite => _allSprites.Add(int.Parse(sprite.name), sprite))
+                ).TapError(err => Debug.LogError("Can not parse items from resource folder: " + ConfigClass.InventoryItemsPath + ": error - " + err));
         }
 
         public void AddItem(int id)
         {
             Result
-                .Try(() => AllItems[id])
-                .Tap(o =>
-                {
-                    if (Result.Try(() => _itemInInventory[id]).IsFailure)
-                    {
-                        GameObject go = Instantiate(o);
-                        go.transform.SetParent(transform, false);
-                        _itemInInventory.Add(id, go);
-                    }
-                })
+                .Try(() => (id, _allSprites[id]))
+                .Ensure(_ => !_itemsInInventory.ContainsKey(id), "Player already have this item: " + id)
+                .Tap(tup => _itemsInInventory.Add(id, AddElementToUi(tup.Item2)))
                 .TapError(Debug.Log);
         }
 
-        public Maybe<GameObject> GetItem(int id)
+        public Maybe<Sprite> GetCollectedItemSprite(int id)
         {
-            return Result.Try(() => _itemInInventory[id])
-                .Match(
-                    Maybe<GameObject>.From,
-                    err =>
-                        {
-                            Debug.Log(err);
-                            return Maybe<GameObject>.None;
-                        }
-                    );
+            return _allSprites.TryFind(id);
         }
 
-        public Dictionary<int, GameObject> GetItems()
+        public Dictionary<int, Sprite> GetItems()
         {
-            return _itemInInventory;
+            return _allSprites
+                .ToList()
+                .FindAll(tup => _itemsInInventory.Keys.Contains(tup.Key))
+                .ToDictionary(tup => tup.Key, tup => tup.Value);
         }
 
         public void RemoveItem(int id)
         {
             Result
-                .Try(() => _itemInInventory[id])
-                .Tap(_ => _itemInInventory.Remove(id))
+                .Try(() => _itemsInInventory[id])
+                .Tap(_ => _itemsInInventory.Remove(id))
                 .Tap(Destroy)
-                .TapError(Debug.Log);
+                .TapError(Debug.LogError);
+        }
+        
+        private GameObject AddElementToUi(Sprite itemSprite)
+        {
+            GameObject go = new GameObject("item: " + itemSprite.name, typeof(RectTransform));
+            go.layer = LayerMask.NameToLayer("UI");
+            GameObject backgroundGameObject = new GameObject();
+            backgroundGameObject.layer = LayerMask.NameToLayer("UI");
+            GameObject spriteGameObject = new GameObject();
+            spriteGameObject.layer = LayerMask.NameToLayer("UI");
+            backgroundGameObject.AddComponent<CanvasRenderer>();
+            spriteGameObject.AddComponent<CanvasRenderer>();
+            go.transform.SetParent(gameObject.transform, false);
+            backgroundGameObject.transform.SetParent(go.transform, false);
+            spriteGameObject.transform.SetParent(go.transform, false);
+            Image bgsr = backgroundGameObject.AddComponent<Image>();
+            Image msr = spriteGameObject.AddComponent<Image>();
+            spriteGameObject.GetComponent<RectTransform>().localScale = new Vector3(0.7f, 0.7f, 0.7f);
+            bgsr.sprite = _backgroundSprite;
+            msr.sprite = itemSprite;
+            return go;
         }
     }
 }

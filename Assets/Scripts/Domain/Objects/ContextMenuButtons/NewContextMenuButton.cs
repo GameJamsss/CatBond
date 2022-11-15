@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Domain.Items;
 using Assets.Scripts.Managers;
 using CSharpFunctionalExtensions;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Image = UnityEngine.UI.Image;
 using Random = System.Random;
 
 namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
@@ -42,15 +39,14 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                             .Tap(co => co.CloseContextMenu())
                             .Tap(co =>
                             {
-                                Dictionary<int, GameObject> items = iim.GetItems();
+                                Dictionary<int, Sprite> items = iim.GetItems();
                                 List<float> pozs = items.Count % 2 != 0 ? co.CalcOddPoz(items.ToList()) : co.ClacEvenPoz(items.ToList());
 
                                 int i = 0;
                                 List<IContextMenuButton> cmb = new();
                                 foreach (var keyValuePair in items)
                                 {
-                                    GameObject go = keyValuePair.Value;
-                                    Sprite sprite = go.GetComponent<Image>().sprite;
+                                    Sprite sprite = keyValuePair.Value; ;
                                     int itemId = keyValuePair.Key;
 
                                     cmb.Add(new ItemContextMenuButton(new Random().Next(),

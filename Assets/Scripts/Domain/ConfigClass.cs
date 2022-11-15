@@ -9,5 +9,7 @@ namespace Assets.Scripts.Domain
     public static class ConfigClass
     {
         public static string ClickableItemTag = "Item";
+
+        public static string InventoryItemsPath = "Inventory/Collectables";
     }
 }
