@@ -703,6 +703,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &143605458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7124577018959591706, guid: 7e758384d5d640d44b720635a620f048, type: 3}
+  m_PrefabInstance: {fileID: 7124577020277982590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &143605465
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143605458}
+  m_Enabled: 1
 --- !u!1 &158141496
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +1010,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 3.13
-  MinDistance: 5
+  MinDistance: 7.73
   MaxDistance: 10
   Pan2D: 0
   rolloffMode: 1
@@ -2988,7 +3001,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605587778}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &605587780
 Camera:
   m_ObjectHideFlags: 0
@@ -4727,7 +4740,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 4.49
-  MinDistance: 3.09
+  MinDistance: 7
   MaxDistance: 9.18
   Pan2D: 0
   rolloffMode: 0
@@ -5878,7 +5891,7 @@ GameObject:
   - component: {fileID: 1445665331}
   - component: {fileID: 1445665330}
   - component: {fileID: 1445665333}
-  - component: {fileID: 1445665334}
+  - component: {fileID: 1445665335}
   m_Layer: 0
   m_Name: CofeeMashine
   m_TagString: Item
@@ -6197,7 +6210,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1445665334
+--- !u!114 &1445665335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6206,15 +6219,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1445665322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa2b09e353025d145880387ee86e3d5b, type: 3}
+  m_Script: {fileID: 11500000, guid: e831a04bfa2945148940a7cd69ca3bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 2
-  _info:
-  - xczcxz
-  _staticButtonSprite: {fileID: 21300000, guid: 7a298580da8271448a3c9708fa97a642, type: 3}
-  _hoveredButtonSprite: {fileID: 21300000, guid: 6f6143e9dc5ea3549abb5b8b829d7193, type: 3}
-  _clickedButtonSprite: {fileID: 21300000, guid: 75b91a8e48cbdec429c3ed495a63cf33, type: 3}
+  _id: 0
+  _staticButtonSprite: {fileID: 21300000, guid: d34d8f45d048ab242b9b591916a44432, type: 3}
+  _hoveredButtonSprite: {fileID: 21300000, guid: d8f4bb327c86e42458da219c5e6650a2, type: 3}
+  _clickedButtonSprite: {fileID: 21300000, guid: fa7b9b87ee2eeed4ebe949c90d9ab4a8, type: 3}
 --- !u!1 &1454164934
 GameObject:
   m_ObjectHideFlags: 0
@@ -7278,7 +7289,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 5
+  MinDistance: 6.8
   MaxDistance: 10
   Pan2D: 0
   rolloffMode: 1
