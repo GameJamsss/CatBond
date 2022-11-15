@@ -65,6 +65,7 @@ namespace Assets.Scripts.Domain
         {
             _spriteRenderer.sprite = _spriteClick;
             _action();
+            transform.parent.GetComponent<ClickableObject>().CloseContextMenu();
         }
     }
 }

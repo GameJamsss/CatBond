@@ -89,7 +89,13 @@ namespace Assets.Scripts.UI
                         cos
                             .FindAll(co => co != mbClickableItem)
                             .ForEach(co => co.CloseContextMenu());
+
                         mbClickableItem.Click();
+                    }
+
+                    if (col.GetComponent<Interactable>() != null)
+                    {
+                        col.GetComponent<Interactable>().Interact();
                     }
                 }
             }
