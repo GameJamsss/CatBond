@@ -23,6 +23,7 @@ namespace Assets.Scripts.UI
 
         private bool clicked;
         private Vector3 mousePosition;
+
         private void Start()
         {
             Cursor.visible = false;
@@ -103,8 +104,6 @@ namespace Assets.Scripts.UI
             {
                 cos.ForEach(co => co.CloseContextMenu());
             }
-
-            
         }
 
         private void OnDrawGizmos()

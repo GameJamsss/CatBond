@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
 namespace Assets.Scripts.Domain.Objects
 {
     public class Interactable : MonoBehaviour

@@ -5,8 +5,6 @@ using CSharpFunctionalExtensions;
 using System.Linq;
 using Assets.Scripts.Domain;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using Unity.VisualScripting;
 
 namespace Assets.Scripts.Managers
 {
