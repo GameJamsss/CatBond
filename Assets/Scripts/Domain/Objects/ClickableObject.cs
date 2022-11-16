@@ -36,6 +36,11 @@ namespace Assets.Scripts.Domain.Objects
         public void CloseContextMenu()
         {
             selfCollider.enabled = true;
+            DestroyContextMenu();
+        }
+
+        private void DestroyContextMenu()
+        {
             InGameButton[] gos = FindObjectsOfType<InGameButton>();
             gos.ToList().ForEach(p => Destroy(p.gameObject));
         }
@@ -54,7 +59,7 @@ namespace Assets.Scripts.Domain.Objects
 
         public void ChangeContextMenu(List<IContextMenuButton> cmb)
         {
-            CloseContextMenu();
+            DestroyContextMenu();
             SpawnButtons(cmb);
         }
 

@@ -93,9 +93,10 @@ namespace Assets.Scripts.UI
                         mbClickableItem.Click();
                     }
 
-                    if (col.GetComponent<Interactable>() != null)
+                    Interactable i = col.GetComponent<Interactable>();
+                    if (i)
                     {
-                        col.GetComponent<Interactable>().Interact();
+                        i.Interact();
                     }
                 }
             }

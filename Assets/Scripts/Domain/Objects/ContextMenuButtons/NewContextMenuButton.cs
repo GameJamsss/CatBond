@@ -36,12 +36,11 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                     {
                         Result
                             .Try(parent.GetComponent<ClickableObject>)
-                            .Tap(co => co.CloseContextMenu())
+                            .Ensure(co => co != null, "no clickable object found on: " + gameObject.name)
                             .Tap(co =>
                             {
                                 Dictionary<int, Sprite> items = iim.GetItems();
-                                List<float> pozs = items.Count % 2 != 0 ? co.CalcOddPoz(items.ToList()) : co.ClacEvenPoz(items.ToList());
-
+                                Debug.Log(items.Count);
                                 int i = 0;
                                 List<IContextMenuButton> cmb = new();
                                 foreach (var keyValuePair in items)
@@ -49,7 +48,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                                     Sprite sprite = keyValuePair.Value; ;
                                     int itemId = keyValuePair.Key;
 
-                                    cmb.Add(new ItemContextMenuButton(new Random().Next(),
+                                    cmb.Add(new UseItemContextMenuButton(new Random().Next(),
                                             itemId,
                                             sprite,
                                             sprite,
@@ -57,9 +56,10 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                                             );
                                     i++;
                                 }
+
                                 co.ChangeContextMenu(cmb);
                             })
-                            .TapError(Debug.Log);
+                            .TapError(Debug.LogError);
                     },
               _staticButtonSprite,
     _hoveredButtonSprite,
