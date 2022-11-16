@@ -4,7 +4,7 @@ using System.Linq;
 using Assets.Scripts.Domain;
 using UnityEngine;
 using Assets.Scripts.Domain.Objects;
-using Assets.Scripts.Managers;
+using Assets.Scripts.Utils;
 using CSharpFunctionalExtensions;
 
 namespace Assets.Scripts.UI
@@ -70,35 +70,39 @@ namespace Assets.Scripts.UI
 
             if (cols.Count != 0)
             {
-                foreach (var col in cols)
+
+                cols.ForEach(col =>
                 {
-                    CollectableItem mbCollectableItem = col.GetComponent<CollectableItem>();
-                    if (mbCollectableItem)
-                    {
-                        mbCollectableItem.Take();
-                    }
+                    MaybeRich
+                        .NullSafe(col.GetComponent<CollectableItem>())
+                        .Tap(ci =>
+                        {
+                            ci.Take();
+                            cos.ForEach(co => co.CloseContextMenu());
+                        });
+                    MaybeRich
+                        .NullSafe(col.GetComponent<InGameButton>())
+                        .Tap(igb =>
+                        {
+                            igb.Click();
+                        });
+                    MaybeRich
+                        .NullSafe(col.GetComponent<ClickableObject>())
+                        .Tap(clickable =>
+                        {
+                            cos
+                                .FindAll(co => co != clickable)
+                                .ForEach(co => co.CloseContextMenu());
+                            clickable.Click();
+                        });
+                    MaybeRich
+                        .NullSafe(col.GetComponent<Interactable>())
+                        .Tap(i =>
+                        {
+                            i.Interact();
+                        });
 
-                    InGameButton mbInGameButton = col.GetComponent<InGameButton>();
-                    if (mbInGameButton)
-                    {
-                        mbInGameButton.Click();
-                    }
-
-                    ClickableObject mbClickableItem = col.GetComponent<ClickableObject>();
-                    if (mbClickableItem)
-                    {
-                        cos
-                            .FindAll(co => co != mbClickableItem)
-                            .ForEach(co => co.CloseContextMenu());
-
-                        mbClickableItem.Click();
-                    }
-
-                    if (col.GetComponent<Interactable>() != null)
-                    {
-                        col.GetComponent<Interactable>().Interact();
-                    }
-                }
+                });
             }
             else
             {

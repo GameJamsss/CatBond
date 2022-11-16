@@ -8,10 +8,11 @@ using CSharpFunctionalExtensions;
 using UnityEngine;
 using Assets.Scripts.Domain.State;
 using Assets.Scripts.UI;
+using Assets.Scripts.Utils;
 
 namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
 {
-    public class ItemContextMenuButton : MonoBehaviour, IContextMenuButton
+    public class UseItemContextMenuButton : MonoBehaviour, IContextMenuButton
     {
         private int _id;
         public int _itemId;
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
         private Sprite _hoveredButtonSprite;
         private Sprite _clickedButtonSprite;
 
-        public ItemContextMenuButton(int id, int itemId, Sprite staticButtonSprite, Sprite hoveredButtonSprite, Sprite clickedButtonSprite)
+        public UseItemContextMenuButton(int id, int itemId, Sprite staticButtonSprite, Sprite hoveredButtonSprite, Sprite clickedButtonSprite)
         {
             _id = id;
             _itemId = itemId;
@@ -45,10 +46,9 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                         .Try(parent.GetComponent<StateManager>)
                         .Ensure(sm => sm != null, "no state manager")
                         .Tap(sm => sm.TransitState(_itemId))
-                        .Map(_ => parent.GetComponent<ClickableObject>())
-                        .Ensure(co => co != null, "no clickable object")
+                        .Bind(_ => InGameButtonUtils.GetClickableObject(parent, _id))
                         .Tap(co => co.CloseContextMenu())
-                        .TapError(Debug.Log);
+                        .TapError(Debug.LogError);
                 },
                 _staticButtonSprite,
                 _hoveredButtonSprite,

@@ -5,6 +5,8 @@ using Assets.Scripts.UI;
 using System.Collections;
 using System.Threading;
 using Assets.Scripts.Domain.Items;
+using CSharpFunctionalExtensions;
+using Random = System.Random;
 
 namespace Assets.Scripts.Domain
 {
@@ -26,6 +28,7 @@ namespace Assets.Scripts.Domain
             Sprite clickSprite)
         {
             GameObject go = new GameObject { transform = { parent = parent.transform } };
+            go.name = "InGameButton" + new Random().Next(1, 100);
             go.tag = ConfigClass.ClickableItemTag;
             go.transform.localPosition = new Vector2(x, y);
             SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
@@ -65,7 +68,7 @@ namespace Assets.Scripts.Domain
         {
             _spriteRenderer.sprite = _spriteClick;
             _action();
-            transform.parent.GetComponent<ClickableObject>().CloseContextMenu();
+        //    transform.parent.GetComponent<ClickableObject>().CloseContextMenu();
         }
     }
 }

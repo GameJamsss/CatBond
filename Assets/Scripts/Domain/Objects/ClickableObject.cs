@@ -14,7 +14,7 @@ namespace Assets.Scripts.Domain.Objects
         [SerializeField] private float _buttonBottomOffset;
         [SerializeField] private float _buttonSideOffset;
 
-        private Collider2D selfCollider;
+        private Collider2D _selfCollider;
         private StateManager _stateManager;
         void Start()
         {
@@ -26,8 +26,8 @@ namespace Assets.Scripts.Domain.Objects
                 .Match(
                     tup =>
                     {
-                        selfCollider = tup.Item2;
-                        selfCollider.tag = ConfigClass.ClickableItemTag;
+                        _selfCollider = tup.Item2;
+                        _selfCollider.tag = ConfigClass.ClickableItemTag;
                         _stateManager = tup.Item1;
                     },
                     Debug.LogError);
@@ -35,7 +35,12 @@ namespace Assets.Scripts.Domain.Objects
 
         public void CloseContextMenu()
         {
-            selfCollider.enabled = true;
+            _selfCollider.enabled = true;
+            DestroyContextMenu();
+        }
+
+        private void DestroyContextMenu()
+        {
             InGameButton[] gos = FindObjectsOfType<InGameButton>();
             gos.ToList().ForEach(p => Destroy(p.gameObject));
         }
@@ -48,13 +53,13 @@ namespace Assets.Scripts.Domain.Objects
                 {
                     CloseContextMenu();
                     SpawnButtons(cmb);
-                    selfCollider.enabled = false;
+                    _selfCollider.enabled = false;
                 }, Debug.LogError);
         }
 
         public void ChangeContextMenu(List<IContextMenuButton> cmb)
         {
-            CloseContextMenu();
+            DestroyContextMenu();
             SpawnButtons(cmb);
         }
 

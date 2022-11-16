@@ -2,6 +2,7 @@
 using System.Linq;
 using Assets.Scripts.Domain.Items;
 using Assets.Scripts.Managers;
+using Assets.Scripts.Utils;
 using CSharpFunctionalExtensions;
 using UnityEngine;
 
@@ -38,6 +39,8 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                             dialogManager => dialogManager.StartDialog(GetDialog()),
                             error => Debug.Log("We are stupid fucks. The error is: " + error)
                             );
+                    InGameButtonUtils.GetClickableObject(parent, _id)
+                        .Match(co => co.CloseContextMenu(), Debug.LogError);
                 },
                 _staticButtonSprite,
                 _hoveredButtonSprite,

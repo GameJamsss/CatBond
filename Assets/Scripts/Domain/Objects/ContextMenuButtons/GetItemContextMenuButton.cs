@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Assets.Scripts.Domain.Items;
 using Assets.Scripts.Domain.State;
 using Assets.Scripts.Managers;
+using Assets.Scripts.Utils;
 using CSharpFunctionalExtensions;
 using UnityEditor;
 using UnityEngine;
@@ -45,6 +46,8 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                             },
                             error => Debug.LogError("We are stupid fucks. No inventory manager is around: " + error)
                         );
+                    InGameButtonUtils.GetClickableObject(parent, _id)
+                        .Match(co => co.CloseContextMenu(), Debug.LogError);
                 },
                 _staticButtonSprite,
                 _hoveredButtonSprite,
