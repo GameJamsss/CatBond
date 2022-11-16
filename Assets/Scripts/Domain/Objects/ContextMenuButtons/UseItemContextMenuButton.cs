@@ -8,6 +8,7 @@ using CSharpFunctionalExtensions;
 using UnityEngine;
 using Assets.Scripts.Domain.State;
 using Assets.Scripts.UI;
+using Assets.Scripts.Utils;
 
 namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
 {
@@ -45,10 +46,9 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                         .Try(parent.GetComponent<StateManager>)
                         .Ensure(sm => sm != null, "no state manager")
                         .Tap(sm => sm.TransitState(_itemId))
-                        .Map(_ => parent.GetComponent<ClickableObject>())
-                        .Ensure(co => co != null, "no clickable object")
+                        .Bind(_ => InGameButtonUtils.GetClickableObject(parent, _id))
                         .Tap(co => co.CloseContextMenu())
-                        .TapError(Debug.Log);
+                        .TapError(Debug.LogError);
                 },
                 _staticButtonSprite,
                 _hoveredButtonSprite,

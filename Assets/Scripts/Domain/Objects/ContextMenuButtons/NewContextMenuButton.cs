@@ -2,6 +2,7 @@
 using System.Linq;
 using Assets.Scripts.Domain.Items;
 using Assets.Scripts.Managers;
+using Assets.Scripts.Utils;
 using CSharpFunctionalExtensions;
 using UnityEngine;
 using Random = System.Random;
@@ -34,9 +35,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                     y,
                     () =>
                     {
-                        Result
-                            .Try(parent.GetComponent<ClickableObject>)
-                            .Ensure(co => co != null, "no clickable object found on: " + gameObject.name)
+                        InGameButtonUtils.GetClickableObject(parent, _id)
                             .Tap(co =>
                             {
                                 Dictionary<int, Sprite> items = iim.GetItems();
