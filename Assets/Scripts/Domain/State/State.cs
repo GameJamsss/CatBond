@@ -25,6 +25,7 @@ namespace Assets.Scripts.Domain.State
 
         void Start()
         {
+            //Debug.Log(gameObject.name + "stateid" + _id + " " + _transitions.Length);
             ContextMenu = Result
                 .Try(() => GetComponents(typeof(IContextMenuButton)))
                 .Map(contextMenu => contextMenu.ToList().FindAll(c => c is IContextMenuButton))
@@ -40,6 +41,7 @@ namespace Assets.Scripts.Domain.State
                 Debug.LogError("can not parse all _transactions" + gameObject.name);
                 return new List<Tuple<int, int>>();
             });
+            //Debug.Log("parsed: " + _parsedTransactions.Count);
         }
 
         public Maybe<int> Transition(int itemId)

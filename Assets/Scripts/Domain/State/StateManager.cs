@@ -38,21 +38,17 @@ namespace Assets.Scripts.Domain.State
 
         public bool TransitState(int itemId)
         {
-            return getState(itemId)
+            return getState(_currentStateId)
                 .Map(state => state.Transition(itemId))
                 .Bind(mbId => mbId.Map(getState).Match(some => some, () => Result.Failure<State>("no such state")))
                 .Tap(state => ApplyState(state.GetId()))
-                .TapError(err => Debug.Log(err))
+                .TapError(Debug.Log)
                 .IsSuccess;
         }
 
         public Result<List<IContextMenuButton>> GetStateContextMenu()
         {
-            return getState(_currentStateId)
-                .Map(state =>
-                {
-                    return state.ContextMenu;
-                });
+            return getState(_currentStateId).Map(state => state.ContextMenu);
         }
 
         private Result<State> getState(int stateId)

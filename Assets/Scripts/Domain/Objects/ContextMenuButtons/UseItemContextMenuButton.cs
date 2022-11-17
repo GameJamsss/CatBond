@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using UnityEngine;
 using Assets.Scripts.Domain.State;
+using Assets.Scripts.Managers;
 using Assets.Scripts.UI;
 using Assets.Scripts.Utils;
 
@@ -44,10 +45,17 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                 y,
                 () =>
                 {
-                    Result
-                        .Try(parent.GetComponent<StateManager>)
-                        .Ensure(sm => sm != null, "no state manager")
-                        .Tap(sm => sm.TransitState(_itemId))
+                    MaybeRich
+                        .NullSafe(parent.GetComponent<StateManager>())
+                        .ToResult("no state manager")
+                        .Bind(sm =>
+                            MaybeRich.NullSafe(FindObjectOfType<ItemInventoryManager>())
+                                .ToResult("No inventory manager found")
+                                .Map(iim => (iim, sm)))
+                        .Tap(valueTuple =>
+                        {
+                            if (valueTuple.sm.TransitState(_itemId)) valueTuple.iim.RemoveItem(_itemId);
+                        })
                         .Bind(_ => InGameButtonUtils.GetClickableObject(parent, _id))
                         .Tap(co => co.CloseContextMenu())
                         .TapError(Debug.LogError);
