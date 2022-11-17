@@ -16,6 +16,9 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
         [SerializeField] private Sprite _staticButtonSprite;
         [SerializeField] private Sprite _hoveredButtonSprite;
         [SerializeField] private Sprite _clickedButtonSprite;
+        [SerializeField] private Sprite _staticContextMenuBackground;
+        [SerializeField] private Sprite _hoveredContextMenuBackground;
+        [SerializeField] private Sprite _clickedContextMenuBackground;
         private ItemInventoryManager iim;
 
         void Start()
@@ -35,28 +38,23 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                     y,
                     () =>
                     {
-                        InGameButtonUtils.GetClickableObject(parent, _id)
+                        InGameButtonUtils
+                            .GetClickableObject(parent, _id)
                             .Tap(co =>
                             {
-                                Dictionary<int, Sprite> items = iim.GetItems();
-                                Debug.Log(items.Count);
-                                int i = 0;
-                                List<IContextMenuButton> cmb = new();
-                                foreach (var keyValuePair in items)
-                                {
-                                    Sprite sprite = keyValuePair.Value; ;
-                                    int itemId = keyValuePair.Key;
-
-                                    cmb.Add(new UseItemContextMenuButton(new Random().Next(),
-                                            itemId,
-                                            sprite,
-                                            sprite,
-                                            sprite)
-                                            );
-                                    i++;
-                                }
-
-                                co.ChangeContextMenu(cmb);
+                                co.ChangeContextMenu(
+                                    iim
+                                        .GetItems()
+                                        .Select<KeyValuePair<int, Sprite>, IContextMenuButton> (kv =>
+                                            new UseItemContextMenuButton(new Random().Next(),
+                                                kv.Key,
+                                                _staticContextMenuBackground,
+                                                _hoveredContextMenuBackground,
+                                                _clickedContextMenuBackground,
+                                                kv.Value)
+                                                )
+                                        .ToList()
+                                    );
                             })
                             .TapError(Debug.LogError);
                     },

@@ -19,14 +19,16 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
         private Sprite _staticButtonSprite;
         private Sprite _hoveredButtonSprite;
         private Sprite _clickedButtonSprite;
+        private Sprite _frontImage;
 
-        public UseItemContextMenuButton(int id, int itemId, Sprite staticButtonSprite, Sprite hoveredButtonSprite, Sprite clickedButtonSprite)
+        public UseItemContextMenuButton(int id, int itemId, Sprite staticButtonSprite, Sprite hoveredButtonSprite, Sprite clickedButtonSprite, Sprite frontImage)
         {
             _id = id;
             _itemId = itemId;
             _staticButtonSprite = staticButtonSprite;
             _hoveredButtonSprite = hoveredButtonSprite;
             _clickedButtonSprite = clickedButtonSprite;
+            _frontImage = frontImage;
         }
 
         public int GetId()
@@ -52,7 +54,8 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                 },
                 _staticButtonSprite,
                 _hoveredButtonSprite,
-                _clickedButtonSprite
+                _clickedButtonSprite,
+                _frontImage
             );
         }
     }
