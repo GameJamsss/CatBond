@@ -19,13 +19,14 @@ namespace Assets.Scripts.Domain.State
         [SerializeField] private Sprite _sprite;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private AudioClip _onTransitionClip;
+        [SerializeField] private AudioClip _onTransitionAudioClip;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private string _onTransitionAnimationName;
         private List<Tuple<int, int>> _parsedTransactions;
         public List<IContextMenuButton> ContextMenu = new();
 
         void Start()
         {
-            //Debug.Log(gameObject.name + "stateid" + _id + " " + _transitions.Length);
             ContextMenu = Result
                 .Try(() => GetComponents(typeof(IContextMenuButton)))
                 .Map(contextMenu => contextMenu.ToList().FindAll(c => c is IContextMenuButton))
@@ -41,7 +42,6 @@ namespace Assets.Scripts.Domain.State
                 Debug.LogError("can not parse all _transactions" + gameObject.name);
                 return new List<Tuple<int, int>>();
             });
-            //Debug.Log("parsed: " + _parsedTransactions.Count);
         }
 
         public Maybe<int> Transition(int itemId)
@@ -57,12 +57,22 @@ namespace Assets.Scripts.Domain.State
 
         public void ApplySound()
         {
-            if (_audioSource != null && _onTransitionClip != null)
+            if (_audioSource != null && _onTransitionAudioClip != null)
             {
                 _audioSource.Stop();
                 _audioSource.loop = false;
-                _audioSource.clip = _onTransitionClip;
+                _audioSource.clip = _onTransitionAudioClip;
                 _audioSource.Play();
+            }
+        }
+
+        public void ApplyAnimation()
+        {
+            if (_animator != null)
+            {
+                Result
+                    .Try(() => _animator.Play(_onTransitionAnimationName))
+                    .TapError(Debug.LogError);
             }
         }
 
