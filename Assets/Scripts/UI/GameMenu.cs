@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
+    [Space(5f), Header("Check List")]
     [SerializeField] private GameObject _checkList;
     [SerializeField] private GameObject _checkListRing;
 

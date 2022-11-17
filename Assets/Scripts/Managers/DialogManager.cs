@@ -16,6 +16,13 @@ namespace Assets.Scripts.Managers
         [SerializeField] private float _sleep;
         [SerializeField] private string buttonNextText;
         [SerializeField] private string buttonEndText;
+
+        [Space(10f), Header("Äudio")]
+        [SerializeField] private AudioClip _writtingClip;
+        [SerializeField] private AudioClip _closePopUp;
+        [SerializeField] private AudioClip _popUpClip;
+        [SerializeField] private AudioSource _dialogCanvasAudioS;
+
         private Dialog _currentDialog;
         private Coroutine _coroutine;
         private AudioSource _audioSource;
@@ -26,8 +33,9 @@ namespace Assets.Scripts.Managers
         }
 
         public void StartDialog(Dialog dialog)
-        {
+        {          
             canvas.SetActive(true);
+            _dialogCanvasAudioS.PlayOneShot(_popUpClip);
             _nextButton.onClick.RemoveListener(CloseDialog);
             _nextButton.onClick.AddListener(NextLine);
             _buttonText.text = buttonNextText;
