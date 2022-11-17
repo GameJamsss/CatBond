@@ -80,6 +80,7 @@ namespace Assets.Scripts.Domain.State
         {
             ApplySprite();
             ApplySound();
+            ApplyAnimation();
         }
 
         public int GetId()
