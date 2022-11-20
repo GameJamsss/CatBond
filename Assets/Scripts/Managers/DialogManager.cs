@@ -34,6 +34,9 @@ namespace Assets.Scripts.Managers
 
         public void StartDialog(Dialog dialog)
         {          
+
+            Debug.Log(dialog.Copy().Next().GetLine());
+
             canvas.SetActive(true);
             _dialogCanvasAudio.PlayOneShot(_popUpClip);
             _nextButton.onClick.RemoveListener(CloseDialog);

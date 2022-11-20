@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Assets.Scripts.Domain.Items;
 using Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic;
+using Assets.Scripts.Domain.State;
 using UnityEngine;
 
 namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
@@ -20,7 +21,9 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
 
         void Start()
         {
-            _customLogicComponent = _customLogicHolder
+            Debug.Log(gameObject
+                .GetComponents<ICustomLogic>().Length);
+            _customLogicComponent = (_customLogicHolder != null ? _customLogicHolder : gameObject)
                 .GetComponents<ICustomLogic>()
                 .ToList()
                 .Find(icl => icl.GetId() == _customLogicComponentId);
@@ -31,7 +34,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
             return _id;
         }
 
-        public void SpawnButton(GameObject parent, float x, float y)
+        public void SpawnButton(GameObject parent, StateManager sm, float x, float y)
         {
             InGameButton.Create(parent
                 , x

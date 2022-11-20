@@ -37,7 +37,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
             return _id;
         }
 
-        public void SpawnButton(GameObject parent, float x, float y)
+        public void SpawnButton(GameObject parent, StateManager sm, float x, float y)
         {
             InGameButton.Create(
                 parent,
@@ -45,16 +45,13 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                 y,
                 () =>
                 {
+                    
                     MaybeRich
-                        .NullSafe(parent.GetComponent<StateManager>())
-                        .ToResult("no state manager")
-                        .Bind(sm =>
-                            MaybeRich.NullSafe(FindObjectOfType<ItemInventoryManager>())
-                                .ToResult("No inventory manager found")
-                                .Map(iim => (iim, sm)))
-                        .Tap(valueTuple =>
+                        .NullSafe(FindObjectOfType<ItemInventoryManager>())
+                        .ToResult("No inventory manager found")
+                        .Tap(iim =>
                         {
-                            if (valueTuple.sm.TransitState(_itemId)) valueTuple.iim.RemoveItem(_itemId);
+                            if (sm.TransitState(_itemId)) iim.RemoveItem(_itemId);
                         })
                         .Bind(_ => InGameButtonUtils.GetClickableObject(parent, _id))
                         .Tap(co => co.CloseContextMenu())

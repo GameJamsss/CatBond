@@ -13,13 +13,16 @@ namespace Assets.Scripts.Domain.Objects
     {
         [SerializeField] private float _buttonBottomOffset = 0.4f;
         [SerializeField] private float _buttonSideOffset = 1f;
+        [SerializeField] private GameObject _stateManagerHolder;
+        
+
 
         private Collider2D _selfCollider;
         private StateManager _stateManager;
         void Start()
         {
 
-            Result.Try(() => (GetComponent<StateManager>(), GetComponent<Collider2D>()))
+            Result.Try(() => (_stateManagerHolder != null ? _stateManagerHolder.GetComponent<StateManager>() : GetComponent<StateManager>(), GetComponent<Collider2D>()))
                 .Ensure(
                     tup => tup.Item1 != null && tup.Item2 != null, "no state manager or collider2d in object: " + gameObject.name
                     )
@@ -68,7 +71,7 @@ namespace Assets.Scripts.Domain.Objects
             List<float> pozs = cmb.Count % 2 != 0 ? CalcOddPoz(cmb) : ClacEvenPoz(cmb);
             foreach (var (contextMenuButton, i1) in cmb.Select((cmb, i) => (cmb, i)))
             {
-                contextMenuButton.SpawnButton(gameObject, pozs[i1], -1 * _buttonBottomOffset);
+                contextMenuButton.SpawnButton(gameObject, _stateManager, pozs[i1], -1 * _buttonBottomOffset);
             }
         }
 

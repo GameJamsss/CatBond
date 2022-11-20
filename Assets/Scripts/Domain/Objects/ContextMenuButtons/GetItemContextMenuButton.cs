@@ -27,7 +27,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
             return _id;
         }
 
-        public void SpawnButton(GameObject parent, float x, float y)
+        public void SpawnButton(GameObject parent, StateManager sm, float x, float y)
         {
             InGameButton.Create(
                 parent,
@@ -37,12 +37,11 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                 {
                     Result
                         .Try(FindObjectOfType<ItemInventoryManager>)
-                        .Bind(iim => Result.Try(() => new Tuple<StateManager, ItemInventoryManager>(GetComponent<StateManager>(), iim)))
                         .Match(
-                            tup =>
+                            iim =>
                             {
-                                tup.Item2.AddItem(_itemId);
-                                if (_nextState != -1) tup.Item1.ApplyState(_nextState);
+                                iim.AddItem(_itemId);
+                                if (_nextState != -1) sm.ApplyState(_nextState);
                             },
                             error => Debug.LogError("We are stupid fucks. No inventory manager is around: " + error)
                         );

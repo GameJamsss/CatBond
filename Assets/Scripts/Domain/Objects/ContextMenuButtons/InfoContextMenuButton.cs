@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Domain.Items;
+using Assets.Scripts.Domain.State;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Utils;
 using CSharpFunctionalExtensions;
@@ -25,7 +26,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
             return _id;
         }
 
-        public void SpawnButton(GameObject parent, float x, float y)
+        public void SpawnButton(GameObject parent, StateManager sm, float x, float y)
         {
             InGameButton.Create(
                 parent,
@@ -33,8 +34,9 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                 y,
                 () =>
                 {
-                    Result
-                        .Try(FindObjectOfType<DialogManager>)
+                    MaybeRich
+                        .NullSafe(FindObjectOfType<DialogManager>())
+                        .ToResult("Dialog manager does not exist")
                         .Match(
                             dialogManager => dialogManager.StartDialog(GetDialog()),
                             error => Debug.Log("We are stupid fucks. The error is: " + error)

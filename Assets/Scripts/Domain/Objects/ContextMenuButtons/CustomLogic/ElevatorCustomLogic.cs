@@ -7,19 +7,17 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic
 {
     public class ElevatorCustomLogic : MonoBehaviour, ICustomLogic
     {
-
         [SerializeField] private int _id;
-
         [SerializeField] private float _speed;
+
+        [Header("Positions")]
         [SerializeField] private Transform _from;
         [SerializeField] private Transform _to;
         private Transform _goTo;
 
         [Header("Audio")]
-        [SerializeField] private AudioClip _working;
-        [SerializeField] private AudioClip _stops;
-        [SerializeField] private AudioClip _error;
-        [SerializeField] private AudioClip _toGo;
+        [SerializeField] private AudioClip _moving;
+        [SerializeField] private AudioClip _stopped;
 
         private AudioSource _audioSource;
         private Coroutine _coroutine;
@@ -38,7 +36,13 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic
 
         public void Apply()
         {
-           StopCoroutine(_coroutine);
+            if (_moving)
+            {
+                _audioSource.loop = true;
+                _audioSource.clip = _moving;
+                _audioSource.Play();
+            }
+            if (_coroutine != null) StopCoroutine(_coroutine);
            _coroutine = StartCoroutine(StartSequence());
         }
 
@@ -49,7 +53,20 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic
                 transform.position = Vector2.MoveTowards(transform.position, _goTo.position, _speed * Time.deltaTime);
                 yield return null;
             }
+
             _goTo = _goTo != _from ? _from : _to;
+
+            if (_stopped)
+            {
+                _audioSource.loop = false;
+                _audioSource.clip = _stopped;
+                _audioSource.Play();
+            }
+            else
+            {
+                _audioSource.Stop();
+            }
+           
         }
     }
 }
