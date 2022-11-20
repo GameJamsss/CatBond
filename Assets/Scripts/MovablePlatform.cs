@@ -9,15 +9,14 @@ namespace Assets.Scripts
         [SerializeField] private float speed;
         [SerializeField] private int startPoint;
         [SerializeField] private Transform[] points;
-        [SerializeField] private CapsuleCollider2D _capsuleCollider2D;
 
         [SerializeField] private float _waitTime = 2f;
 
         [SerializeField] private GameObject _fullSprite;
         [SerializeField] private GameObject _emptySprite;
 
-        [SerializeField] private bool _isTankFull = false;
-        [SerializeField] private bool _canMove = false;
+        private bool _isTankFull = false;
+        private bool _canMove = false;
 
         [Header("Audio")]
         [SerializeField] private AudioClip _working;
@@ -25,13 +24,14 @@ namespace Assets.Scripts
         [SerializeField] private AudioClip _error;
         [SerializeField] private AudioClip _toGo;
 
-        [SerializeField] private StateManager _stateManager;
+        private StateManager _stateManager;
 
         private int i;
         private AudioSource _audioSource;
 
         private void Awake()
         {
+            _stateManager = GetComponent<StateManager>();
             _audioSource = GetComponent<AudioSource>();
         }
 
