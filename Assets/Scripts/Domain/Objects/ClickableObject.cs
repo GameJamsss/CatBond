@@ -11,8 +11,8 @@ namespace Assets.Scripts.Domain.Objects
 {
     public class ClickableObject : MonoBehaviour, IClickable, IApplicable
     {
-        [SerializeField] private float _buttonBottomOffset;
-        [SerializeField] private float _buttonSideOffset;
+        [SerializeField] private float _buttonBottomOffset = 0.4f;
+        [SerializeField] private float _buttonSideOffset = 1f;
 
         private Collider2D _selfCollider;
         private StateManager _stateManager;
