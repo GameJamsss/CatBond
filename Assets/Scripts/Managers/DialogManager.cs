@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Utils;
+using CSharpFunctionalExtensions;
 
 namespace Assets.Scripts.Managers
 {
@@ -17,11 +19,10 @@ namespace Assets.Scripts.Managers
         [SerializeField] private string buttonNextText;
         [SerializeField] private string buttonEndText;
 
-        [Space(10f), Header("Äudio")]
+        [Space(10f), Header("Audio")]
         [SerializeField] private AudioClip _writtingClip;
         [SerializeField] private AudioClip _closePopUp;
         [SerializeField] private AudioClip _popUpClip;
-        [SerializeField] private AudioSource _dialogCanvasAudio;
 
         private Dialog _currentDialog;
         private Coroutine _coroutine;
@@ -29,16 +30,17 @@ namespace Assets.Scripts.Managers
 
         private void Start()
         {
-            _audioSource = GetComponent<AudioSource>();
+            MaybeRich.NullSafe(GetComponent<AudioSource>())
+                .ToResult("No audio source found in: " + gameObject.name)
+                .Match(
+                    suc => _audioSource = suc,
+                    Debug.LogError);
         }
 
         public void StartDialog(Dialog dialog)
-        {          
-
-            Debug.Log(dialog.Copy().Next().GetLine());
-
+        {
             canvas.SetActive(true);
-            _dialogCanvasAudio.PlayOneShot(_popUpClip);
+            _audioSource.PlayOneShot(_popUpClip);
             _nextButton.onClick.RemoveListener(CloseDialog);
             _nextButton.onClick.AddListener(NextLine);
             _buttonText.text = buttonNextText;
