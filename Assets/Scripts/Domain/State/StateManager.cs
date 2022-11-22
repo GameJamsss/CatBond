@@ -2,7 +2,6 @@
 using System.Linq;
 using Assets.Scripts.Domain.Items;
 using CSharpFunctionalExtensions;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.Domain.State

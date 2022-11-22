@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Domain.Items;
+using Assets.Scripts.Domain.State;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Utils;
 using CSharpFunctionalExtensions;
@@ -30,7 +31,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
             return _id;
         }
 
-        public void SpawnButton(GameObject parent, float x, float y)
+        public void SpawnButton(GameObject parent, StateManager sm, float x, float y)
         {
             InGameButton
                 .Create(parent,
