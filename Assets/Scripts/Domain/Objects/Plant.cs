@@ -6,7 +6,8 @@ namespace Assets.Scripts
 {
     public class Plant : MonoBehaviour
     {
-        [SerializeField] private AudioClip _clip;
+        [SerializeField] private AudioClip _eatClip;
+        [SerializeField] private GameObject _cup;
 
         private bool _isItFull = false;
 
@@ -19,11 +20,16 @@ namespace Assets.Scripts
             _audioSource = GetComponent<AudioSource>();
         }
 
+        private void Start()
+        {
+            _cup.SetActive(true);
+        }
+
         private void GetAngry()
         {
-            if (_clip != null)
+            if (_eatClip != null)
             {
-                _audioSource.PlayOneShot(_clip);
+                _audioSource.PlayOneShot(_eatClip);
             }
 
             _animator.SetTrigger("Angry");
@@ -39,6 +45,16 @@ namespace Assets.Scripts
             if (_isItFull) return;
 
             GetAngry();
+        }
+
+        private void PlayEatSound()
+        {
+            _audioSource.PlayOneShot(_eatClip);
+        }
+
+        private void RemoveCup()
+        {
+            _cup.SetActive(false);
         }
     }
 }
