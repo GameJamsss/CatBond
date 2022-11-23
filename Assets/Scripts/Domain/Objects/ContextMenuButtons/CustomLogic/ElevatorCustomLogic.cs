@@ -17,7 +17,9 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic
 
         [Header("Audio")]
         [SerializeField] private AudioClip _moving;
+        [SerializeField] private AudioClip _startMoving;
         [SerializeField] private AudioClip _stopped;
+        [SerializeField] private AudioClip _error;
 
         private AudioSource _audioSource;
         private Coroutine _coroutine;
@@ -65,8 +67,17 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic
             else
             {
                 _audioSource.Stop();
-            }
-           
+            }          
+        }
+
+        //For Animator
+        private void PlayStoppedClip() => _audioSource.PlayOneShot(_stopped);
+        private void PlayStartMoveClip() => _audioSource.PlayOneShot(_startMoving);
+        private void PlayErrorMoveClip() => _audioSource.PlayOneShot(_error);
+        private void PlayMovingClip()
+        {
+            _audioSource.clip = _moving;
+            _audioSource.Play();
         }
     }
 }
