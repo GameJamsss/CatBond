@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Assets.Scripts.Domain
 {
     public class Line
     {
+
         private readonly string _line;
 
         public Line(string line)
@@ -29,6 +31,13 @@ namespace Assets.Scripts.Domain
 
     public class Dialog
     {
+        public static Dialog build(params string[] quotes)
+        {
+            Queue<Line> q = new Queue<Line>();
+            quotes.ToList().Select(s => new Line(s)).ToList().ForEach(line => q.Enqueue(line));
+            return new Dialog(q);
+        }
+
         private readonly Queue<Line> _dialogLines;
         public Dialog(Queue<Line> dialogLines)
         {

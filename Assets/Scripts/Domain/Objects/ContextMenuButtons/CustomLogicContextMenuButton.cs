@@ -2,6 +2,8 @@
 using Assets.Scripts.Domain.Items;
 using Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic;
 using Assets.Scripts.Domain.State;
+using Assets.Scripts.Utils;
+using CSharpFunctionalExtensions;
 using UnityEngine;
 
 namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
@@ -45,6 +47,8 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                         _customLogicComponent.Apply();
                     else 
                         Debug.LogError("Custom Logic Component not found in: " + gameObject.name);
+                    InGameButtonUtils.GetClickableObject(parent, _id)
+                        .Match(co => co.CloseContextMenu(), Debug.LogError);
                 }
                 , _staticButtonSprite
                 , _hoveredButtonSprite

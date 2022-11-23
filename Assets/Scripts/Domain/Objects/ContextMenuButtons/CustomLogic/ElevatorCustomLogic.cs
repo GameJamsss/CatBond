@@ -45,6 +45,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic
                 _audioSource.Play();
             }
             if (_coroutine != null) StopCoroutine(_coroutine);
+            Debug.Log("here");
            _coroutine = StartCoroutine(StartSequence());
         }
 

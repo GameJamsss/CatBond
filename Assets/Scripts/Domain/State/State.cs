@@ -17,6 +17,8 @@ namespace Assets.Scripts.Domain.State
         [SerializeField] private int[] _contextMenuIds;
         [SerializeField] private string[] _transitions;
         [SerializeField] private Sprite _sprite;
+        [SerializeField] private bool _removeSpriteIfEmpty;
+
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _onTransitionAudioClip;
@@ -52,7 +54,7 @@ namespace Assets.Scripts.Domain.State
 
         public void ApplySprite()
         {
-            if (_sprite != null && _spriteRenderer != null) _spriteRenderer.sprite = _sprite;
+            if ((_removeSpriteIfEmpty || _sprite != null) && _spriteRenderer != null) _spriteRenderer.sprite = _sprite;
         }
 
         public void ApplySound()
