@@ -35,7 +35,8 @@ namespace Assets.Scripts.Domain
             frontImageGo.tag = ConfigClass.ClickableItemTag;
             SpriteRenderer sr = frontImageGo.AddComponent<SpriteRenderer>();
             sr.sprite = frontImage;
-            sr.sortingOrder = 51;
+            sr.sortingLayerName = "Button";
+            sr.sortingOrder = 1;
             return go;
         }
 
@@ -49,11 +50,13 @@ namespace Assets.Scripts.Domain
             Sprite clickSprite)
         {
             GameObject go = new GameObject("InGameButton" + new Random().Next(1, 100));
+            go.layer = LayerMask.NameToLayer("Button");
             go.tag = ConfigClass.ClickableItemTag;
             go.transform.SetParent(parent.transform, false);
             go.transform.localPosition = new Vector2(x, y);
             SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
-            sr.sortingOrder = 50;
+            //sr.sortingOrder = 50;
+            sr.sortingLayerName = "Button";
             sr.sprite = staticSprite;
             CircleCollider2D c = go.AddComponent<CircleCollider2D>();
             c.isTrigger = true;

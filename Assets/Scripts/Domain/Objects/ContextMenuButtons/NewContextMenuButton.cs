@@ -46,13 +46,13 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                                 co.ChangeContextMenu(
                                     iim
                                         .GetItems()
-                                        .Select<KeyValuePair<int, Sprite>, IContextMenuButton> (kv =>
-                                            new UseItemContextMenuButton(new Random().Next(),
-                                                kv.Key,
-                                                _staticContextMenuBackground,
-                                                _hoveredContextMenuBackground,
-                                                _clickedContextMenuBackground,
-                                                kv.Value)
+                                        .Select<KeyValuePair<int, Sprite>, IContextMenuButton>(kv =>
+                                           new UseItemContextMenuButton(new Random().Next(),
+                                               kv.Key,
+                                               _staticContextMenuBackground,
+                                               _hoveredContextMenuBackground,
+                                               _clickedContextMenuBackground,
+                                               kv.Value)
                                                 )
                                         .ToList()
                                     );

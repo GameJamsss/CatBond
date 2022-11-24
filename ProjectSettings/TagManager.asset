@@ -16,8 +16,8 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
-  - 
+  - Button
+  - Cursor
   - 
   - 
   - 
@@ -43,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Button
+    uniqueID: 3400583429
+    locked: 0
+  - name: Cursor
+    uniqueID: 3830046709
     locked: 0
