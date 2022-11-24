@@ -1254,6 +1254,8 @@ GameObject:
   - component: {fileID: 174799808}
   - component: {fileID: 174799809}
   - component: {fileID: 174799810}
+  - component: {fileID: 174799811}
+  - component: {fileID: 174799812}
   m_Layer: 0
   m_Name: switer
   m_TagString: Item
@@ -1322,7 +1324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _contextMenuIds: 00000000
+  _contextMenuIds: 0000000001000000
   _transitions: []
   _sprite: {fileID: 0}
   _removeSpriteIfEmpty: 0
@@ -1343,8 +1345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a651d529daec1499746a9e377872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonBottomOffset: 0
-  _buttonSideOffset: 0
+  _buttonBottomOffset: 0.4
+  _buttonSideOffset: 1
   _stateManagerHolder: {fileID: 0}
 --- !u!61 &174799805
 BoxCollider2D:
@@ -1558,6 +1560,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d6d6a7b25bfde4096ba2e8e15a5cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &174799811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174799799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4405800b86791eb418089a4dd009c345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 1
+  _itemId: 9
+  _transitToState: 1
+  _staticButtonSprite: {fileID: 21300000, guid: e9a9282e1d9baef41befae34861905e5, type: 3}
+  _hoveredButtonSprite: {fileID: 21300000, guid: 91beacb15cd43154a80ba419f710d714, type: 3}
+  _clickedButtonSprite: {fileID: 21300000, guid: c45d153d4ae1b1a4a9af57a4109861eb, type: 3}
+--- !u!114 &174799812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174799799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630136b92834ed0408793b0e30c72a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 1
+  _contextMenuIds: 00000000
+  _transitions: []
+  _sprite: {fileID: 0}
+  _removeSpriteIfEmpty: 0
+  _spriteRenderer: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onTransitionAudioClip: {fileID: 0}
+  _animator: {fileID: 0}
+  _onTransitionAnimationName: 
 --- !u!1 &209735307
 GameObject:
   m_ObjectHideFlags: 0

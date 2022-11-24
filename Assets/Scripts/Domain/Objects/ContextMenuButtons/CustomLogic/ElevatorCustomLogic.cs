@@ -45,8 +45,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic
                 _audioSource.Play();
             }
             if (_coroutine != null) StopCoroutine(_coroutine);
-            Debug.Log("here");
-           _coroutine = StartCoroutine(StartSequence());
+            _coroutine = StartCoroutine(StartSequence());
         }
 
         IEnumerator StartSequence()
@@ -69,16 +68,6 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic
             {
                 _audioSource.Stop();
             }          
-        }
-
-        //For Animator
-        private void PlayStoppedClip() => _audioSource.PlayOneShot(_stopped);
-        private void PlayStartMoveClip() => _audioSource.PlayOneShot(_startMoving);
-        private void PlayErrorMoveClip() => _audioSource.PlayOneShot(_error);
-        private void PlayMovingClip()
-        {
-            _audioSource.clip = _moving;
-            _audioSource.Play();
         }
     }
 }
