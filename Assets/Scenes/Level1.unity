@@ -1250,7 +1250,6 @@ GameObject:
   - component: {fileID: 174799803}
   - component: {fileID: 174799802}
   - component: {fileID: 174799801}
-  - component: {fileID: 174799807}
   - component: {fileID: 174799808}
   - component: {fileID: 174799809}
   - component: {fileID: 174799810}
@@ -1426,20 +1425,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &174799807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174799799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea9cfdbf6f187047a7ebb5ad8e3357e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: 9
-  _clip: {fileID: 8300000, guid: 189c2d55671282b4d830370b6dc9f39c, type: 3}
 --- !u!82 &174799808
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1595,8 +1580,8 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 0}
   _removeSpriteIfEmpty: 0
-  _spriteRenderer: {fileID: 0}
-  _audioSource: {fileID: 0}
+  _spriteRenderer: {fileID: 174799806}
+  _audioSource: {fileID: 174799808}
   _onTransitionAudioClip: {fileID: 0}
   _animator: {fileID: 0}
   _onTransitionAnimationName: 
