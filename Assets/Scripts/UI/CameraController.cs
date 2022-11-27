@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+     //  if (Screen.width)
         _targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 5);
     }
 

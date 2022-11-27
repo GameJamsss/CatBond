@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Item
   - ClickableObject
+  - Cursor
   layers:
   - Default
   - TransparentFX

@@ -13,16 +13,28 @@ public class Outliner : MonoBehaviour
         _defaultMatetial = new Material(Shader.Find("Sprites/Default"));
     }
 
-    void OnMouseEnter()
+    //void OnMouseEnter()
+    //{
+    //    Debug.Log("entered " + gameObject.name);
+    //    SetMaterial(_outlineMaterial);
+    //}
+
+    //void OnMouseExit()
+    //{
+    //    Debug.Log("exited " + gameObject.name);
+    //    SetMaterial(_defaultMatetial);
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("entered " + gameObject.name);
-        SetMaterial(_outlineMaterial);
+       if (collision.CompareTag("Cursor"))
+            SetMaterial(_outlineMaterial);
     }
 
-    void OnMouseExit()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("exited " + gameObject.name);
-        SetMaterial(_defaultMatetial);
+        if (collision.CompareTag("Cursor"))
+             SetMaterial(_defaultMatetial);
     }
 
     private void SetMaterial(Material material)
