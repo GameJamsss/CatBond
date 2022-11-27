@@ -96,6 +96,7 @@ namespace Assets.Scripts.UI
                         {
                             cos
                                 .FindAll(co => co != clickable)
+                                .ToList()
                                 .ForEach(co => co.CloseContextMenu());
                             clickable.Click();
                         });

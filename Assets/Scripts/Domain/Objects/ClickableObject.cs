@@ -15,7 +15,6 @@ namespace Assets.Scripts.Domain.Objects
         [SerializeField] private float _buttonSideOffset = 1f;
         [SerializeField] private GameObject _stateManagerHolder;
 
-        private bool _enabled = true;
         private Collider2D _selfCollider;
         private StateManager _stateManager;
         void Start()
@@ -42,12 +41,12 @@ namespace Assets.Scripts.Domain.Objects
         }
         public void Disable()
         {
-            _enabled = false;
+            _selfCollider.enabled = false;
         }
 
         public void Enable ()
         {
-            _enabled = true;
+            _selfCollider.enabled = true;
         }
 
         private void DestroyContextMenu()
@@ -58,7 +57,7 @@ namespace Assets.Scripts.Domain.Objects
 
         public void Click()
         {
-            if (_enabled) _stateManager
+            if (_selfCollider.enabled) _stateManager
                 .GetStateContextMenu()
                 .Match(cmb =>
                 {
