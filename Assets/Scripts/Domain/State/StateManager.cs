@@ -25,7 +25,9 @@ namespace Assets.Scripts.Domain.State
 
         public void ApplyState(int _stateId)
         {
-            Result.Try(() => _states.Find(state => state.GetId() == _stateId))
+            Debug.Log(_states.Exists(s => s.GetId() == _stateId));
+            Result
+                .Try(() => _states.Find(state => state.GetId() == _stateId))
                 .Ensure(state => state != null, "no such state")
                 .Match(state =>
                     {
@@ -41,7 +43,7 @@ namespace Assets.Scripts.Domain.State
                 .Map(state => state.Transition(itemId))
                 .Bind(mbId => mbId.Map(getState).Match(some => some, () => Result.Failure<State>("no such state")))
                 .Tap(state => ApplyState(state.GetId()))
-                .TapError(Debug.Log)
+                .TapError(Debug.LogError)
                 .IsSuccess;
         }
 

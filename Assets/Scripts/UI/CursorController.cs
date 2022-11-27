@@ -6,6 +6,7 @@ using UnityEngine;
 using Assets.Scripts.Domain.Objects;
 using Assets.Scripts.Utils;
 using CSharpFunctionalExtensions;
+using Assets.Scripts.Managers;
 
 namespace Assets.Scripts.UI
 {
@@ -16,16 +17,19 @@ namespace Assets.Scripts.UI
         [SerializeField] private Sprite _idle;
         [SerializeField] private Sprite _click;
         [SerializeField] private Sprite _hovered;
-
         [SerializeField] private SpriteRenderer _spriteRenderer;
-
         [SerializeField] private float _checkCircleRadius = 1f;
+        private DialogManager dm;
 
         private bool clicked;
         private Vector3 mousePosition;
 
         private void Start()
         {
+            MaybeRich.NullSafe(FindObjectOfType<DialogManager>())
+                .Match(
+                suc => dm = suc,
+                () => Debug.LogError("No dialog manager found: " + gameObject.name));
             Cursor.visible = false;
             _spriteRenderer.sprite = _idle;
         }
@@ -68,7 +72,7 @@ namespace Assets.Scripts.UI
                     .ToList()
                     .FindAll(col => col.tag == ConfigClass.ClickableItemTag);
 
-            if (cols.Count != 0)
+            if (cols.Count != 0 && !dm.InDialog)
             {
 
                 cols.ForEach(col =>

@@ -29,19 +29,20 @@ namespace Assets.Scripts.Managers
         private Dialog _currentDialog;
         private Coroutine _coroutine;
         private AudioSource _audioSource;
-
+        public bool InDialog = false;
         private void Start()
         {
             MaybeRich.NullSafe(GetComponent<AudioSource>())
                 .ToResult("No audio source found in: " + gameObject.name)
                 .Match(
                     suc => _audioSource = suc,
-                    Debug.LogError);
+                    Debug.LogError
+                 );
         }
 
         public void StartDialog(Dialog dialog)
         {
-            FindObjectsOfType<ClickableObject>().ToList().ForEach(co => co.Disable());
+            InDialog = true;
             canvas.SetActive(true);
             _audioSource.PlayOneShot(_popUpClip);
             _nextButton.onClick.RemoveListener(CloseDialog);
@@ -66,7 +67,7 @@ namespace Assets.Scripts.Managers
 
         private void CloseDialog()
         {
-            FindObjectsOfType<ClickableObject>().ToList().ForEach(co => co.Enable());
+            InDialog = false;
             _audioSource.Stop();
             canvas.SetActive(false);
         }

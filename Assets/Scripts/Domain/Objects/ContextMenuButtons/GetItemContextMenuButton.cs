@@ -18,10 +18,20 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
         [SerializeField] private int _id;
         [SerializeField] private int _itemId;
         [SerializeField] private int _nextState = -1;
-        [SerializeField] private Sprite _staticButtonSprite;
-        [SerializeField] private Sprite _hoveredButtonSprite;
-        [SerializeField] private Sprite _clickedButtonSprite;
+        [SerializeField] private Sprite _staticBackgroundSprite;
+        [SerializeField] private Sprite _hoveredBackgroundSprite;
+        [SerializeField] private Sprite _clickedBackgroundSprite;
 
+        private ItemInventoryManager _iim;
+        void Start()
+        {
+            MaybeRich
+                .NullSafe(FindObjectOfType<ItemInventoryManager>())
+                .Match(
+                    suc => _iim = suc,
+                    () => Debug.LogError("No Item Inventory Manager has been found: " + gameObject.name)
+                );
+        }
         public int GetId()
         {
             return _id;
@@ -29,29 +39,34 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
 
         public void SpawnButton(GameObject parent, StateManager sm, float x, float y)
         {
-            InGameButton.Create(
-                parent,
-                x,
-                y,
-                () =>
-                {
-                    Result
-                        .Try(FindObjectOfType<ItemInventoryManager>)
-                        .Match(
-                            iim =>
+
+            _iim.GetCollectedItemSprite(_itemId).Match(
+                    suc =>
+                    {
+                        InGameButton.Create(
+                            parent,
+                            x,
+                            y,
+                            () =>
                             {
-                                iim.AddItem(_itemId);
+
+                                _iim.AddItem(_itemId);
+                                _iim.GetCollectedItemSprite(_itemId);
                                 if (_nextState != -1) sm.ApplyState(_nextState);
+                                InGameButtonUtils.GetClickableObject(parent, _id)
+                                    .Match(co => co.CloseContextMenu(), Debug.LogError);
                             },
-                            error => Debug.LogError("We are stupid fucks. No inventory manager is around: " + error)
+                            _staticBackgroundSprite,
+                            _hoveredBackgroundSprite,
+                            _clickedBackgroundSprite,
+                            suc
                         );
-                    InGameButtonUtils.GetClickableObject(parent, _id)
-                        .Match(co => co.CloseContextMenu(), Debug.LogError);
-                },
-                _staticButtonSprite,
-                _hoveredButtonSprite,
-                _clickedButtonSprite
-            );
+                    },
+                    () => {
+                        Debug.LogError("Can not find corresponding sprite: " + gameObject.name + "on parent " + parent.name);
+                    }
+                );
+            
         }
     }
 }

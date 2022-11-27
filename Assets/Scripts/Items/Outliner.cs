@@ -15,11 +15,13 @@ public class Outliner : MonoBehaviour
 
     void OnMouseEnter()
     {
+        Debug.Log("entered " + gameObject.name);
         SetMaterial(_outlineMaterial);
     }
 
     void OnMouseExit()
     {
+        Debug.Log("exited " + gameObject.name);
         SetMaterial(_defaultMatetial);
     }
 

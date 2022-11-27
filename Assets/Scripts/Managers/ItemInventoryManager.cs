@@ -16,12 +16,15 @@ namespace Assets.Scripts.Managers
 
         private void Start()
         {
-            Result.Try(() => 
+            Result.Try(() =>
                     Resources
                     .LoadAll<Sprite>(ConfigClass.InventoryItemsPath)
                     .ToList()
                     .ForEach(sprite => _allSprites.Add(int.Parse(sprite.name), sprite))
                 ).TapError(err => Debug.LogError("Can not parse items from resource folder: " + ConfigClass.InventoryItemsPath + ": error - " + err));
+
+            AddItem(5);
+            AddItem(2);
         }
 
         public void AddItem(int id)

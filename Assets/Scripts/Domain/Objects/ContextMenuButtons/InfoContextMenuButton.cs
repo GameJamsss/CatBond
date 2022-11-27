@@ -40,8 +40,9 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                         .Match(
                             dialogManager => dialogManager.StartDialog(GetDialog()),
                             error => Debug.Log("We are stupid fucks. The error is: " + error)
-                            );
-                    InGameButtonUtils.GetClickableObject(parent, _id)
+                         );
+                    InGameButtonUtils
+                        .GetClickableObject(parent, _id)
                         .Match(co => co.CloseContextMenu(), Debug.LogError);
                 },
                 _staticButtonSprite,
