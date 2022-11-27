@@ -658,9 +658,9 @@ MonoBehaviour:
   _id: 1
   _itemId: 7
   _nextState: 1
-  _staticButtonSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
-  _hoveredButtonSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
-  _clickedButtonSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
+  _staticBackgroundSprite: {fileID: 0}
+  _hoveredBackgroundSprite: {fileID: 0}
+  _clickedBackgroundSprite: {fileID: 0}
 --- !u!114 &17318971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4404,9 +4404,9 @@ MonoBehaviour:
   _id: 1
   _itemId: 3
   _nextState: 1
-  _staticButtonSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
-  _hoveredButtonSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
-  _clickedButtonSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
+  _staticBackgroundSprite: {fileID: 0}
+  _hoveredBackgroundSprite: {fileID: 0}
+  _clickedBackgroundSprite: {fileID: 0}
 --- !u!114 &762536533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5114,9 +5114,9 @@ MonoBehaviour:
   _id: 1
   _itemId: 4
   _nextState: 1
-  _staticButtonSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
-  _hoveredButtonSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
-  _clickedButtonSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
+  _staticBackgroundSprite: {fileID: 0}
+  _hoveredBackgroundSprite: {fileID: 0}
+  _clickedBackgroundSprite: {fileID: 0}
 --- !u!114 &878021407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5577,9 +5577,9 @@ MonoBehaviour:
   _id: 2
   _itemId: 2
   _nextState: 2
-  _staticButtonSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
-  _hoveredButtonSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
-  _clickedButtonSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
+  _staticBackgroundSprite: {fileID: 0}
+  _hoveredBackgroundSprite: {fileID: 0}
+  _clickedBackgroundSprite: {fileID: 0}
 --- !u!114 &990518520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7179,9 +7179,9 @@ MonoBehaviour:
   _id: 1
   _itemId: 5
   _nextState: 4
-  _staticButtonSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
-  _hoveredButtonSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
-  _clickedButtonSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
+  _staticBackgroundSprite: {fileID: 0}
+  _hoveredBackgroundSprite: {fileID: 0}
+  _clickedBackgroundSprite: {fileID: 0}
 --- !u!114 &1445665331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7525,7 +7525,7 @@ Canvas:
   m_GameObject: {fileID: 1480756495}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 605587780}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -7535,7 +7535,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 400
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!224 &1480756500
 RectTransform:
@@ -8973,9 +8973,9 @@ MonoBehaviour:
   _id: 1
   _itemId: 6
   _nextState: 3
-  _staticButtonSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
-  _hoveredButtonSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
-  _clickedButtonSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
+  _staticBackgroundSprite: {fileID: 0}
+  _hoveredBackgroundSprite: {fileID: 0}
+  _clickedBackgroundSprite: {fileID: 0}
 --- !u!114 &1598886720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12652,9 +12652,9 @@ MonoBehaviour:
   _id: 3
   _itemId: 1
   _nextState: 2
-  _staticButtonSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
-  _hoveredButtonSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
-  _clickedButtonSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
+  _staticBackgroundSprite: {fileID: 0}
+  _hoveredBackgroundSprite: {fileID: 0}
+  _clickedBackgroundSprite: {fileID: 0}
 --- !u!114 &3208237715788361918
 MonoBehaviour:
   m_ObjectHideFlags: 0

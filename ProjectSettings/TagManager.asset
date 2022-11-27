@@ -56,9 +56,9 @@ TagManager:
   - name: Button
     uniqueID: 3400583429
     locked: 0
-  - name: Cursor
-    uniqueID: 3830046709
-    locked: 0
   - name: UI
     uniqueID: 397137391
+    locked: 0
+  - name: Cursor
+    uniqueID: 3830046709
     locked: 0
