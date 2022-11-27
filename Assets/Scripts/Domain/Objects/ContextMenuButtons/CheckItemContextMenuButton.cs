@@ -23,7 +23,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
             MaybeRich
                 .NullSafe(FindObjectOfType<CheckListManager>())
                 .Match(clm => _clm = clm,
-                    () => Debug.LogError("No CheckListManager found for object: " + gameObject.name)
+                    () => Debug.Log("No CheckListManager found for object: " + gameObject.name)
                     );
         }
 
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                     if (_transitToState != -1) sm.ApplyState(_transitToState);
                     InGameButtonUtils
                         .GetClickableObject(parent, _id)
-                        .Match(co => co.CloseContextMenu(), Debug.LogError);
+                        .Match(co => co.CloseContextMenu(), Debug.Log);
 
                 }
                 , _staticButtonSprite

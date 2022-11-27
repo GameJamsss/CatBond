@@ -29,7 +29,7 @@ namespace Assets.Scripts.UI
             MaybeRich.NullSafe(FindObjectOfType<DialogManager>())
                 .Match(
                 suc => dm = suc,
-                () => Debug.LogError("No dialog manager found: " + gameObject.name));
+                () => Debug.Log("No dialog manager found: " + gameObject.name));
             Cursor.visible = false;
             _spriteRenderer.sprite = _idle;
         }

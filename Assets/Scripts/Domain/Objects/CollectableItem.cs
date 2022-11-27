@@ -31,7 +31,7 @@ public class CollectableItem : MonoBehaviour
                     selfCollider = suc;
                     selfCollider.tag = ConfigClass.ClickableItemTag;
                 },
-                Debug.LogError);
+                Debug.Log);
         
     }
 

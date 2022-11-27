@@ -36,12 +36,12 @@ namespace Assets.Scripts.Domain.State
                 .Map(lc => lc.FindAll(c => _contextMenuIds.Contains(c.GetId())))
                 .Match(resultList => resultList, err =>
                 {
-                    Debug.LogError("Some shit happened in the process of gathering context menu components: " + gameObject.name + ", " + err);
+                    Debug.Log("Some shit happened in the process of gathering context menu components: " + gameObject.name + ", " + err);
                     return new List<IContextMenuButton>();
                 });
             _parsedTransactions = _parseTransactions(_transitions).Match(some => some, () =>
             {
-                Debug.LogError("can not parse all _transactions" + gameObject.name);
+                Debug.Log("can not parse all _transactions" + gameObject.name);
                 return new List<Tuple<int, int>>();
             });
         }
@@ -74,7 +74,7 @@ namespace Assets.Scripts.Domain.State
             {
                 Result
                     .Try(() => _animator.Play(_onTransitionAnimationName))
-                    .TapError(Debug.LogError);
+                    .TapError(Debug.Log);
             }
         }
 

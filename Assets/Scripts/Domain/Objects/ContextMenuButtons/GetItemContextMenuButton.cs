@@ -29,7 +29,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                 .NullSafe(FindObjectOfType<ItemInventoryManager>())
                 .Match(
                     suc => _iim = suc,
-                    () => Debug.LogError("No Item Inventory Manager has been found: " + gameObject.name)
+                    () => Debug.Log("No Item Inventory Manager has been found: " + gameObject.name)
                 );
         }
         public int GetId()
@@ -54,7 +54,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                                 _iim.GetCollectedItemSprite(_itemId);
                                 if (_nextState != -1) sm.ApplyState(_nextState);
                                 InGameButtonUtils.GetClickableObject(parent, _id)
-                                    .Match(co => co.CloseContextMenu(), Debug.LogError);
+                                    .Match(co => co.CloseContextMenu(), Debug.Log);
                             },
                             _staticBackgroundSprite,
                             _hoveredBackgroundSprite,
@@ -63,7 +63,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                         );
                     },
                     () => {
-                        Debug.LogError("Can not find corresponding sprite: " + gameObject.name + "on parent " + parent.name);
+                        Debug.Log("Can not find corresponding sprite: " + gameObject.name + "on parent " + parent.name);
                     }
                 );
             

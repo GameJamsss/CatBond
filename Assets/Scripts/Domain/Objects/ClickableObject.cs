@@ -31,7 +31,7 @@ namespace Assets.Scripts.Domain.Objects
                         _selfCollider.tag = ConfigClass.ClickableItemTag;
                         _stateManager = tup.Item1;
                     },
-                    Debug.LogError);
+                    Debug.Log);
         }
 
         public void CloseContextMenu()
@@ -64,7 +64,7 @@ namespace Assets.Scripts.Domain.Objects
                     CloseContextMenu();
                     SpawnButtons(cmb);
                     Disable();
-                }, Debug.LogError);
+                }, Debug.Log);
         }
 
         public void ChangeContextMenu(List<IContextMenuButton> cmb)

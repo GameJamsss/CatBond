@@ -57,7 +57,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                                         .ToList()
                                     );
                             })
-                            .TapError(Debug.LogError);
+                            .TapError(Debug.Log);
                     },
               _staticButtonSprite,
     _hoveredButtonSprite,

@@ -21,6 +21,15 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
         private Sprite _hoveredButtonSprite;
         private Sprite _clickedButtonSprite;
         private Sprite _frontImage;
+        private DialogManager dm;
+
+        void Start()
+        {
+            MaybeRich.NullSafe(FindObjectOfType<DialogManager>())
+                .Match(suc => dm = suc,
+                () => Debug.Log("No dialog manager has been found " + gameObject.name)
+                );
+        }
 
         public UseItemContextMenuButton(int id, int itemId, Sprite staticButtonSprite, Sprite hoveredButtonSprite, Sprite clickedButtonSprite, Sprite frontImage)
         {
@@ -39,6 +48,9 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
 
         public void SpawnButton(GameObject parent, StateManager sm, float x, float y)
         {
+
+            ;
+
             InGameButton.Create(
                 parent,
                 x,
@@ -51,11 +63,14 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                         .ToResult("No inventory manager found")
                         .Tap(iim =>
                         {
-                            if (sm.TransitState(_itemId)) iim.RemoveItem(_itemId);
+                            if (sm.TransitState(_itemId)) 
+                                iim.RemoveItem(_itemId); 
+                            else 
+                                dm.StartDialog(Dialog.build("Хмм, не могу себе даже представить, как это может тут помочь?!"));
                         })
                         .Bind(_ => InGameButtonUtils.GetClickableObject(parent, _id))
                         .Tap(co => co.CloseContextMenu())
-                        .TapError(Debug.LogError);
+                        .TapError(Debug.Log);
                 },
                 _staticButtonSprite,
                 _hoveredButtonSprite,

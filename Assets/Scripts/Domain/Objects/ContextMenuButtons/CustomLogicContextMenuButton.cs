@@ -46,9 +46,9 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                     if (_customLogicComponent != null)
                         _customLogicComponent.Apply();
                     else 
-                        Debug.LogError("Custom Logic Component not found in: " + gameObject.name);
+                        Debug.Log("Custom Logic Component not found in: " + gameObject.name);
                     InGameButtonUtils.GetClickableObject(parent, _id)
-                        .Match(co => co.CloseContextMenu(), Debug.LogError);
+                        .Match(co => co.CloseContextMenu(), Debug.Log);
                 }
                 , _staticButtonSprite
                 , _hoveredButtonSprite

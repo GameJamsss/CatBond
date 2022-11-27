@@ -23,7 +23,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons.CustomLogic
         {
             MaybeRich
                 .NullSafe(FindObjectOfType<DialogManager>())
-                .Match(suc => dm = suc, () => Debug.LogError("Can't find Dialog manager: " + gameObject.name));
+                .Match(suc => dm = suc, () => Debug.Log("Can't find Dialog manager: " + gameObject.name));
         }
         public int GetId()
         {

@@ -21,7 +21,7 @@ namespace Assets.Scripts.Managers
                     .LoadAll<Sprite>(ConfigClass.InventoryItemsPath)
                     .ToList()
                     .ForEach(sprite => _allSprites.Add(int.Parse(sprite.name), sprite))
-                ).TapError(err => Debug.LogError("Can not parse items from resource folder: " + ConfigClass.InventoryItemsPath + ": error - " + err));
+                ).TapError(err => Debug.Log("Can not parse items from resource folder: " + ConfigClass.InventoryItemsPath + ": error - " + err));
 
             AddItem(5);
             AddItem(2);
@@ -55,7 +55,7 @@ namespace Assets.Scripts.Managers
                 .Try(() => _itemsInInventory[id])
                 .Tap(_ => _itemsInInventory.Remove(id))
                 .Tap(Destroy)
-                .TapError(Debug.LogError);
+                .TapError(Debug.Log);
         }
         
         private GameObject AddElementToUi(Sprite itemSprite)

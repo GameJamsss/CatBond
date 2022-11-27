@@ -36,7 +36,7 @@ namespace Assets.Scripts.Managers
                 .ToResult("No audio source found in: " + gameObject.name)
                 .Match(
                     suc => _audioSource = suc,
-                    Debug.LogError
+                    Debug.Log
                  );
         }
 

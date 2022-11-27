@@ -43,7 +43,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                          );
                     InGameButtonUtils
                         .GetClickableObject(parent, _id)
-                        .Match(co => co.CloseContextMenu(), Debug.LogError);
+                        .Match(co => co.CloseContextMenu(), Debug.Log);
                 },
                 _staticButtonSprite,
                 _hoveredButtonSprite,

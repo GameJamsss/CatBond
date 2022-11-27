@@ -18,7 +18,7 @@ namespace Assets.Scripts.Domain.State
                 .Map(lc => lc.Select(c => c as State).ToList())
                 .Match(states => states, err =>
                 {
-                    Debug.LogError("Some shit happened in the process of gathering states: " + err);
+                    Debug.Log("Some shit happened in the process of gathering states: " + err);
                     return new List<State>();
                 });
         }
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Domain.State
                         state.ApplyState();
                         _currentStateId = state.GetId();
                     },
-                    Debug.LogError);
+                    Debug.Log);
         }
 
         public bool TransitState(int itemId)
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Domain.State
                 .Map(state => state.Transition(itemId))
                 .Bind(mbId => mbId.Map(getState).Match(some => some, () => Result.Failure<State>("no such state")))
                 .Tap(state => ApplyState(state.GetId()))
-                .TapError(Debug.LogError)
+                .TapError(Debug.Log)
                 .IsSuccess;
         }
 
