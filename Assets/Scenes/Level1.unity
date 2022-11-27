@@ -658,9 +658,9 @@ MonoBehaviour:
   _id: 1
   _itemId: 7
   _nextState: 1
-  _staticBackgroundSprite: {fileID: 0}
-  _hoveredBackgroundSprite: {fileID: 0}
-  _clickedBackgroundSprite: {fileID: 0}
+  _staticBackgroundSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
+  _hoveredBackgroundSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
+  _clickedBackgroundSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
 --- !u!114 &17318971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5114,9 +5114,9 @@ MonoBehaviour:
   _id: 1
   _itemId: 4
   _nextState: 1
-  _staticBackgroundSprite: {fileID: 0}
-  _hoveredBackgroundSprite: {fileID: 0}
-  _clickedBackgroundSprite: {fileID: 0}
+  _staticBackgroundSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
+  _hoveredBackgroundSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
+  _clickedBackgroundSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
 --- !u!114 &878021407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5577,9 +5577,9 @@ MonoBehaviour:
   _id: 2
   _itemId: 2
   _nextState: 2
-  _staticBackgroundSprite: {fileID: 0}
-  _hoveredBackgroundSprite: {fileID: 0}
-  _clickedBackgroundSprite: {fileID: 0}
+  _staticBackgroundSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
+  _hoveredBackgroundSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
+  _clickedBackgroundSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
 --- !u!114 &990518520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7179,9 +7179,9 @@ MonoBehaviour:
   _id: 1
   _itemId: 5
   _nextState: 4
-  _staticBackgroundSprite: {fileID: 0}
-  _hoveredBackgroundSprite: {fileID: 0}
-  _clickedBackgroundSprite: {fileID: 0}
+  _staticBackgroundSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
+  _hoveredBackgroundSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
+  _clickedBackgroundSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
 --- !u!114 &1445665331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8972,9 +8972,9 @@ MonoBehaviour:
   _id: 1
   _itemId: 6
   _nextState: 3
-  _staticBackgroundSprite: {fileID: 0}
-  _hoveredBackgroundSprite: {fileID: 0}
-  _clickedBackgroundSprite: {fileID: 0}
+  _staticBackgroundSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
+  _hoveredBackgroundSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
+  _clickedBackgroundSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
 --- !u!114 &1598886720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12575,9 +12575,9 @@ MonoBehaviour:
   _id: 3
   _itemId: 1
   _nextState: 2
-  _staticBackgroundSprite: {fileID: 0}
-  _hoveredBackgroundSprite: {fileID: 0}
-  _clickedBackgroundSprite: {fileID: 0}
+  _staticBackgroundSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
+  _hoveredBackgroundSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
+  _clickedBackgroundSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
 --- !u!114 &3208237715788361918
 MonoBehaviour:
   m_ObjectHideFlags: 0
