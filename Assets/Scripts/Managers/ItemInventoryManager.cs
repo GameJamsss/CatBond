@@ -22,9 +22,6 @@ namespace Assets.Scripts.Managers
                     .ToList()
                     .ForEach(sprite => _allSprites.Add(int.Parse(sprite.name), sprite))
                 ).TapError(err => Debug.Log("Can not parse items from resource folder: " + ConfigClass.InventoryItemsPath + ": error - " + err));
-
-            AddItem(5);
-            AddItem(2);
         }
 
         public void AddItem(int id)
