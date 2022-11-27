@@ -1580,9 +1580,9 @@ MonoBehaviour:
   _transitions: []
   _sprite: {fileID: 0}
   _removeSpriteIfEmpty: 0
-  _spriteRenderer: {fileID: 174799806}
+  _spriteRenderer: {fileID: 0}
   _audioSource: {fileID: 174799808}
-  _onTransitionAudioClip: {fileID: 0}
+  _onTransitionAudioClip: {fileID: 8300000, guid: 189c2d55671282b4d830370b6dc9f39c, type: 3}
   _animator: {fileID: 0}
   _onTransitionAnimationName: 
 --- !u!1 &209735307
@@ -9850,11 +9850,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2940379566699289242, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5
+      value: -4.18
       objectReference: {fileID: 0}
     - target: {fileID: 2940379566699289242, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4
+      value: -5.9
       objectReference: {fileID: 0}
     - target: {fileID: 2940379566699289242, guid: d2855d8734360f8428211bacd1c139d7, type: 3}
       propertyPath: m_LocalPosition.z
