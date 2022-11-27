@@ -14,12 +14,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
   - Player
+  - LevelBack
+  - Cursor
+  - LevelFront
   - Button
   - Cursor
-  - 
-  - 
   - 
   - 
   - 
@@ -43,6 +43,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: LevelBack
+    uniqueID: 3666905431
+    locked: 0
+  - name: Player
+    uniqueID: 4170407217
+    locked: 0
+  - name: LevelFront
+    uniqueID: 2873044371
     locked: 0
   - name: Button
     uniqueID: 3400583429

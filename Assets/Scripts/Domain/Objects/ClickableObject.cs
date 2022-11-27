@@ -38,8 +38,18 @@ namespace Assets.Scripts.Domain.Objects
 
         public void CloseContextMenu()
         {
-            _selfCollider.enabled = true;
+            Enable();
             DestroyContextMenu();
+        }
+
+        public void Disable()
+        {
+            _selfCollider.enabled = false;
+        }
+
+        public void Enable ()
+        {
+            _selfCollider.enabled = true;
         }
 
         private void DestroyContextMenu()
@@ -56,7 +66,7 @@ namespace Assets.Scripts.Domain.Objects
                 {
                     CloseContextMenu();
                     SpawnButtons(cmb);
-                    _selfCollider.enabled = false;
+                    Disable();
                 }, Debug.LogError);
         }
 

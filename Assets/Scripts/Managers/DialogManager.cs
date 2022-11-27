@@ -6,6 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Utils;
 using CSharpFunctionalExtensions;
+using Assets.Scripts.Domain.Objects;
+using System.Linq;
 
 namespace Assets.Scripts.Managers
 {
@@ -39,6 +41,7 @@ namespace Assets.Scripts.Managers
 
         public void StartDialog(Dialog dialog)
         {
+            FindObjectsOfType<ClickableObject>().ToList().ForEach(co => co.Disable());
             canvas.SetActive(true);
             _audioSource.PlayOneShot(_popUpClip);
             _nextButton.onClick.RemoveListener(CloseDialog);
@@ -63,6 +66,7 @@ namespace Assets.Scripts.Managers
 
         private void CloseDialog()
         {
+            FindObjectsOfType<ClickableObject>().ToList().ForEach(co => co.Enable());
             _audioSource.Stop();
             canvas.SetActive(false);
         }
