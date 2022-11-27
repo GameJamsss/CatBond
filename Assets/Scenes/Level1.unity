@@ -4404,9 +4404,9 @@ MonoBehaviour:
   _id: 1
   _itemId: 3
   _nextState: 1
-  _staticBackgroundSprite: {fileID: 0}
-  _hoveredBackgroundSprite: {fileID: 0}
-  _clickedBackgroundSprite: {fileID: 0}
+  _staticBackgroundSprite: {fileID: 21300000, guid: 57a5c5f5d6727fb4282ed0bbe1992cd0, type: 3}
+  _hoveredBackgroundSprite: {fileID: 21300000, guid: 0ddfad7c2d3cf974b985a0298b45c9e9, type: 3}
+  _clickedBackgroundSprite: {fileID: 21300000, guid: eaef5ed2d49617d40a6ba7b742c012af, type: 3}
 --- !u!114 &762536533
 MonoBehaviour:
   m_ObjectHideFlags: 0
