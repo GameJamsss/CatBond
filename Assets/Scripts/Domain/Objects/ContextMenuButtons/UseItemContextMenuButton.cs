@@ -21,18 +21,15 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
         private Sprite _hoveredButtonSprite;
         private Sprite _clickedButtonSprite;
         private Sprite _frontImage;
-        private DialogManager dm;
+        private DialogManager _dialogManager;
+        private AudioSource _audioSource;
+        private Maybe<AudioClip> _wrongClip = Maybe.None;
 
-        void Start()
+        public UseItemContextMenuButton(DialogManager dialogManager, AudioSource  audioSource, Maybe<AudioClip>  wrongClip, int id, int itemId, Sprite staticButtonSprite, Sprite hoveredButtonSprite, Sprite clickedButtonSprite, Sprite frontImage)
         {
-            MaybeRich.NullSafe(FindObjectOfType<DialogManager>())
-                .Match(suc => dm = suc,
-                () => Debug.Log("No dialog manager has been found " + gameObject.name)
-                );
-        }
-
-        public UseItemContextMenuButton(int id, int itemId, Sprite staticButtonSprite, Sprite hoveredButtonSprite, Sprite clickedButtonSprite, Sprite frontImage)
-        {
+            _dialogManager = dialogManager;
+            _audioSource = audioSource;
+            _wrongClip = wrongClip;
             _id = id;
             _itemId = itemId;
             _staticButtonSprite = staticButtonSprite;
@@ -48,25 +45,25 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
 
         public void SpawnButton(GameObject parent, StateManager sm, float x, float y)
         {
-
-            ;
-
             InGameButton.Create(
                 parent,
                 x,
                 y,
                 () =>
                 {
-                    
                     MaybeRich
                         .NullSafe(FindObjectOfType<ItemInventoryManager>())
                         .ToResult("No inventory manager found")
                         .Tap(iim =>
                         {
-                            if (sm.TransitState(_itemId)) 
-                                iim.RemoveItem(_itemId); 
-                            else 
-                                dm.StartDialog(Dialog.build("Хмм, не могу себе даже представить, как это может тут помочь?!"));
+                            if (sm.TransitState(_itemId))
+                                iim.RemoveItem(_itemId);
+                            else
+                            {
+                                _dialogManager.StartDialog(Dialog.build("Хмм, не могу себе даже представить, как это может тут помочь?!"));
+                                _wrongClip.Tap(_audioSource.PlayOneShot);                                   
+                            }
+
                         })
                         .Bind(_ => InGameButtonUtils.GetClickableObject(parent, _id))
                         .Tap(co => co.CloseContextMenu())

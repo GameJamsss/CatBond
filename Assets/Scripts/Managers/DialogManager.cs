@@ -29,7 +29,8 @@ namespace Assets.Scripts.Managers
         private Dialog _currentDialog;
         private Coroutine _coroutine;
         private AudioSource _audioSource;
-        public bool InDialog = false;
+        [HideInInspector] public bool InDialog = false;
+
         private void Start()
         {
             MaybeRich.NullSafe(GetComponent<AudioSource>())

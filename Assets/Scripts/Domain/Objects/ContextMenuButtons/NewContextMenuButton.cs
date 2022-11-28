@@ -12,7 +12,6 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
 {
     public class NewContextMenuButton : MonoBehaviour, IContextMenuButton
     {
-
         [SerializeField] private int _id;
         [SerializeField] private Sprite _staticButtonSprite;
         [SerializeField] private Sprite _hoveredButtonSprite;
@@ -21,11 +20,32 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
         [SerializeField] private Sprite _hoveredContextMenuBackground;
         [SerializeField] private Sprite _clickedContextMenuBackground;
         private ItemInventoryManager iim;
+        private DialogManager _dialogManager;
+        private AudioSource _audioSource;
+        private Maybe<AudioClip> _wrongClip = Maybe.None;
 
         void Start()
         {
-            iim = FindObjectOfType<ItemInventoryManager>();
+            MaybeRich.NullSafe(FindObjectOfType<ItemInventoryManager>())
+             .Match(suc => iim = suc,
+             () => Debug.Log("No inventory manager has been found " + gameObject.name)
+             );
+
+            MaybeRich.NullSafe(FindObjectOfType<DialogManager>())
+              .Match(suc => _dialogManager = suc,
+               () => Debug.Log("No dialog manager has been found " + gameObject.name)
+               );
+
+            _wrongClip = MaybeRich.NullSafe(Resources.Load<AudioClip>("WrongInteraction"));
+
+            MaybeRich.NullSafe(GetComponent<AudioSource>())
+            .ToResult("No audio source found in: " + gameObject.name)
+            .Match(
+             suc => _audioSource = suc,
+             Debug.Log
+            );
         }
+
         public int GetId()
         {
             return _id;
@@ -47,7 +67,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                                     iim
                                         .GetItems()
                                         .Select<KeyValuePair<int, Sprite>, IContextMenuButton>(kv =>
-                                           new UseItemContextMenuButton(new Random().Next(),
+                                           new UseItemContextMenuButton(_dialogManager, _audioSource, _wrongClip, new Random().Next(),
                                                kv.Key,
                                                _staticContextMenuBackground,
                                                _hoveredContextMenuBackground,

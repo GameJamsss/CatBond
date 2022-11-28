@@ -25,16 +25,15 @@ namespace Assets.Scripts.Domain.State
 
         public void ApplyState(int _stateId)
         {
-            Debug.Log(_states.Exists(s => s.GetId() == _stateId));
             Result
-                .Try(() => _states.Find(state => state.GetId() == _stateId))
-                .Ensure(state => state != null, "no such state")
-                .Match(state =>
-                    {
-                        state.ApplyState();
-                        _currentStateId = state.GetId();
-                    },
-                    Debug.Log);
+        .Try(() => _states.Find(state => state.GetId() == _stateId))
+        .Ensure(state => state != null, "no such state")
+        .Match(state =>
+            {
+                state.ApplyState();
+                _currentStateId = state.GetId();
+            },
+            Debug.Log);
         }
 
         public bool TransitState(int itemId)

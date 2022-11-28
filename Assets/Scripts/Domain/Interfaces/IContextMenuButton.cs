@@ -7,6 +7,7 @@ using Assets.Scripts.Domain.Objects;
 using Assets.Scripts.Domain.State;
 using CSharpFunctionalExtensions;
 using UnityEngine;
+using Assets.Scripts.Managers;
 
 namespace Assets.Scripts.Domain.Items
 {

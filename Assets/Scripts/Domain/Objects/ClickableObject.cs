@@ -6,10 +6,12 @@ using Assets.Scripts.Domain.State;
 using CSharpFunctionalExtensions;
 using UnityEngine;
 using UnityEngine.U2D.IK;
+using Assets.Scripts.Managers;
+using Assets.Scripts.Utils;
 
 namespace Assets.Scripts.Domain.Objects
 {
-    public class ClickableObject : MonoBehaviour, IClickable, IApplicable
+    public class ClickableObject : MonoBehaviour, IClickable
     {
         [SerializeField] private float _buttonBottomOffset = 0.4f;
         [SerializeField] private float _buttonSideOffset = 1f;
@@ -17,9 +19,9 @@ namespace Assets.Scripts.Domain.Objects
 
         private Collider2D _selfCollider;
         private StateManager _stateManager;
+
         void Start()
         {
-
             Result.Try(() => (_stateManagerHolder != null ? _stateManagerHolder.GetComponent<StateManager>() : GetComponent<StateManager>(), GetComponent<Collider2D>()))
                 .Ensure(
                     tup => tup.Item1 != null && tup.Item2 != null, "no state manager or collider2d in object: " + gameObject.name
@@ -44,7 +46,7 @@ namespace Assets.Scripts.Domain.Objects
             _selfCollider.enabled = false;
         }
 
-        public void Enable ()
+        public void Enable()
         {
             _selfCollider.enabled = true;
         }
@@ -92,11 +94,6 @@ namespace Assets.Scripts.Domain.Objects
         {
             float offsetBack = list.Count * _buttonBottomOffset / 2;
             return list.Select((_, i) => i * _buttonSideOffset - offsetBack).ToList();
-        }
-
-        public bool Apply(int objId)
-        {
-            return _stateManager.TransitState(objId);
         }
     }
 }

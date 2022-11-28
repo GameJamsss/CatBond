@@ -74,7 +74,6 @@ namespace Assets.Scripts.UI
 
             if (cols.Count != 0 && !dm.InDialog)
             {
-
                 cols.ForEach(col =>
                 {
                     MaybeRich
