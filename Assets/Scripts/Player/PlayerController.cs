@@ -16,17 +16,17 @@ namespace Assets.Scripts.Player
 
         void Start()
         {
-            //Queue<Line> lines = new();
-            //lines.Enqueue(new Line("Босс: О, господин Котовски, в кой это световом году вовремя! Я даже немного волнуюсь, все хорошо?"));
-            //lines.Enqueue(new Line("Котовски: Да, просто попробовал встать вовремя и это сработало."));
-            //lines.Enqueue(new Line("Б: Неужеили? Ну хорошо, продолжаейте в том же духе. А сегодня у меня для вас необычное задание: нужно отыскать все предметы в этом списке. Помогать я вам, конечно же, не буду."));
-            //lines.Enqueue(new Line("К: Принял."));
-            //lines.Enqueue(new Line("Б: А еще ваш цветочек взбунтовался, разберитесь с этим.."));
-            //lines.Enqueue(new Line("К: Ну еще бы."));
-            //lines.Enqueue(new Line("Б: И последнее..."));
-            //lines.Enqueue(new Line("К: Что же?"));
-            //lines.Enqueue(new Line("Б: *Шепотом* Не доверяйте повару. "));
-            //FindObjectOfType<DialogManager>().StartDialog(new Dialog(lines));
+            Queue<Line> lines = new();
+            lines.Enqueue(new Line("Босс: О, господин Котовски, в кой это световом году вовремя! Я даже немного волнуюсь, все хорошо?"));
+            lines.Enqueue(new Line("Котовски: Да, просто попробовал встать вовремя и это сработало."));
+            lines.Enqueue(new Line("Б: Неужеили? Ну хорошо, продолжаейте в том же духе. А сегодня у меня для вас необычное задание: нужно отыскать все предметы в этом списке. Помогать я вам, конечно же, не буду."));
+            lines.Enqueue(new Line("К: Принял."));
+            lines.Enqueue(new Line("Б: А еще ваш цветочек взбунтовался, разберитесь с этим.."));
+            lines.Enqueue(new Line("К: Ну еще бы."));
+            lines.Enqueue(new Line("Б: И последнее..."));
+            lines.Enqueue(new Line("К: Что же?"));
+            lines.Enqueue(new Line("Б: *Шепотом* Не доверяйте повару. "));
+            FindObjectOfType<DialogManager>().StartDialog(new Dialog(lines));
         }
 
         private CharState State

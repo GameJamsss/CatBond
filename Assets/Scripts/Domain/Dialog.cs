@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+
 
 namespace Assets.Scripts.Domain
 {
@@ -31,6 +33,8 @@ namespace Assets.Scripts.Domain
 
     public class Dialog
     {
+        public Action Action = () => { };
+
         public static Dialog build(params string[] quotes)
         {
             Queue<Line> q = new Queue<Line>();
@@ -42,6 +46,11 @@ namespace Assets.Scripts.Domain
         public Dialog(Queue<Line> dialogLines)
         {
             _dialogLines = dialogLines;
+        }
+        public Dialog(Queue<Line> dialogLines, Action action)
+        {
+            _dialogLines = dialogLines;
+            Action = action;
         }
 
         public Dialog Copy()

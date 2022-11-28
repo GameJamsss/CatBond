@@ -62,6 +62,8 @@ namespace Assets.Scripts.Managers
                 _buttonText.text = buttonEndText;
                 _nextButton.onClick.RemoveListener(NextLine);
                 _nextButton.onClick.AddListener(CloseDialog);
+
+                _currentDialog.Action();
             }
             _coroutine = StartCoroutine(StartSequence(line.GetLine()));
         }

@@ -10,7 +10,6 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
 {
     public class CustomLogicContextMenuButton : MonoBehaviour, IContextMenuButton
     {
-
         [SerializeField] private int _id;
         [SerializeField] private int _customLogicComponentId;
         [SerializeField] private GameObject _customLogicHolder;
@@ -23,8 +22,6 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
 
         void Start()
         {
-            Debug.Log(gameObject
-                .GetComponents<ICustomLogic>().Length);
             _customLogicComponent = (_customLogicHolder != null ? _customLogicHolder : gameObject)
                 .GetComponents<ICustomLogic>()
                 .ToList()
@@ -45,7 +42,7 @@ namespace Assets.Scripts.Domain.Objects.ContextMenuButtons
                 {
                     if (_customLogicComponent != null)
                         _customLogicComponent.Apply();
-                    else 
+                    else
                         Debug.Log("Custom Logic Component not found in: " + gameObject.name);
                     InGameButtonUtils.GetClickableObject(parent, _id)
                         .Match(co => co.CloseContextMenu(), Debug.Log);
