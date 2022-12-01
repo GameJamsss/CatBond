@@ -45,7 +45,8 @@ namespace Assets.Scripts.Managers
         {
             InDialog = true;
             canvas.SetActive(true);
-            _audioSource.PlayOneShot(_popUpClip);
+            if (_audioSource != null)
+                _audioSource.PlayOneShot(_popUpClip);
             _nextButton.onClick.RemoveListener(CloseDialog);
             _nextButton.onClick.AddListener(NextLine);
             _buttonText.text = buttonNextText;

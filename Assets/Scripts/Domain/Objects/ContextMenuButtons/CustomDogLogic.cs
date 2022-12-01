@@ -25,7 +25,8 @@ public class CustomDogLogic : MonoBehaviour, ICustomLogic
 
     private void TheEndOfEverything()
     {
-        //Завершение игры. Проиграть заставку
+        //The end of game
+        FindObjectOfType<TheEnd>().StartTheEndOfEverything();
     }
 
     public int GetId()
